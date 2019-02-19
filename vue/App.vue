@@ -10,16 +10,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-import rtc from '../js/utils.js'
 import store from '../js/store'
 import routes from '../js/routes.js'
-// import NavItemsBLL from '../js/BLL/NavItemsBLL.js'
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   routes
 });
-
 router.beforeEach((to, from, next) => {
   //
 });

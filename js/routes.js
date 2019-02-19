@@ -1,9 +1,11 @@
-import Index from '../vue/Index'
 import WIMTList from '../vue/WIMTList'
+import Index from '../vue/Index'
 const routes = [{
+  path: '/',
+  redirect: '/list'
+},{
     path: '/',
     name: 'index',
-    redirect: '/list',
     component: Index,
     children: [{
         path: '/list',
