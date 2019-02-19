@@ -1,0 +1,5 @@
+{
+  "ISNOTASKED": 0,
+  "PENDDING": 1,
+  "COMPLETE": 2
+}

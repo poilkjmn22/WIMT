@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>课堂监控管理后台</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="css/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="css/animate.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="js/vendors/jquery.min.js"></script>
+
+    <script src="js/business/login.js"></script>
+
+    <script src="js/business/extention.js"></script>
+
+    <script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
+
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form>
+              <h1>课堂监控管理后台登录</h1>
+              <div>
+                <input type="text" id="input-login-username" class="form-control" placeholder="用户名" required="" />
+              </div>
+              <div>
+                <input type="password" id="input-login-password" class="form-control" placeholder="密码" required="" />
+              </div>
+              <div id="login_container">
+                  <script>
+                      //本地配置
+                      var appid = "dingoakgwtvlla4kuclwfr";
+                      var redirectURI = "http://106.75.75.66:8070/api/authentication/dtalk";
+                      var targetURI = "http://192.168.56.158:800/index.html";
+
+                      var bizRedirectURI = redirectURI+"/"+encodeURIComponent(appid)+"/"+stringToHex(targetURI);
+                      var obj = DDLogin({
+                           id:"login_container",
+                           goto: encodeURIComponent("https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid="+appid+"&response_type=code&scope=snsapi_login&state=STATE&redirect_uri="+bizRedirectURI),
+                           style: "border:none;background-color:#FFFFFF;",
+                           width : "365",
+                           height: "400"
+                      });
+                      var hanndleMessage = function (event) {
+                            var origin = event.origin;
+                            // 这些需要对origin进行判断下，如果origin的domain 和 嵌入二维码页面url的domain相等的情况下再去取loginTmpCode 并进行跳转
+                            var loginTmpCode = event.data; //拿到loginTmpCode后就可以在这里构造跳转链接进行跳转了
+                            //console.log(loginTmpCode);
+                            var gotourl = "https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid="+appid+"&response_type=code&scope=snsapi_login&state=STATE&redirect_uri="+bizRedirectURI+"&loginTmpCode="+loginTmpCode;
+                            window.location.href = gotourl;
+                        };
+                          if (typeof window.addEventListener != 'undefined') {
+                              window.addEventListener('message', hanndleMessage, false);
+                          } else if (typeof window.attachEvent != 'undefined') {
+                              window.attachEvent('onmessage', hanndleMessage);
+                          }
+                      function stringToHex(str){
+                      　　　　var val="";
+                      　　　　for(var i = 0; i < str.length; i++){
+                                   val += str.charCodeAt(i).toString(16);
+                      　　　　}
+                      　　　　return val;
+                      }
+                  </script>
+              </div>
+
+              <div>
+                <label id="label-login-tip"></label>
+              </div>
+
+              <div>
+                <a class="btn btn-default submit" id="btn-login">登录</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i>课堂监控管理后台</h1>
+                  <p>©2017 公共平台研发 ALL RIGHT RESERVED.</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
