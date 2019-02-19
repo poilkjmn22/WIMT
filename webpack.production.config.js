@@ -39,9 +39,7 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
             root: path.resolve(__dirname, 'HtmlTemplates/ejs/')
         });
     },
-    filename: function(pageName) {
-        return _.kebabCase(pageName);
-    },
+    filename: 'index.html',
     outputPagemap: true
 });
 

@@ -1,3 +1,4 @@
+import Index from '../vue/Index'
 import WIMTList from '../vue/WIMTList'
 const routes = [{
     path: '/',

@@ -36,9 +36,7 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
             root: path.resolve(__dirname, 'HtmlTemplates/ejs/')
         });
     },
-    filename: function(pageName) {
-        return _.kebabCase(pageName);
-    },
+    filename: 'index.html',
     outputPagemap: true
 });
 
@@ -141,7 +139,7 @@ module.exports = {
         publicPath: PUBLIC_PATH,
         // index: './dist/index1.html',
         compress: false,
-        port: 9090,
+        port: 8090,
         hot: true,
         // host: '192.168.20.16',
         host: '192.168.10.147',

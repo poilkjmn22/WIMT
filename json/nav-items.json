@@ -1,39 +1,5 @@
 [{
-        "icon": "iconfont icon-course-setting",
-        "index": "course-setting",
-        "title": "排课管理",
-        "roles": [1, 2, 3],
-        "children": [{
-            "index": "newcourse",
-            "title": "创建课程",
-            "roles": [1, 2, 3]
-        }, {
-            "index": "query-course",
-            "title": "我的课程",
-            "roles": [1, 2, 3]
-        }]
-    },
-    {
-        "icon": "iconfont",
-        "index": "class-setting",
-        "title": "班级管理",
-        "disable": true,
-        "roles": [1, 2, 3],
-        "children": [{
-            "index": "newclass",
-            "title": "创建班级",
-            "roles": [1, 2, 3],
-            "disable": true
-        }, {
-            "index": "query-class",
-            "title": "我的班级",
-            "roles": [1, 2, 3],
-            "disable": true
-        }, {
-            "index": "class-detail",
-            "title": "班级详情",
-            "roles": [1, 2, 3],
-            "disable": true
-        }]
-    }
+  "index": "/",
+  "title": "首页"
+}
 ]

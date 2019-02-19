@@ -1,0 +1,8 @@
+#### web-webpack-plugin
+//去掉js、css等的缓存
+			const targetChunk = compilation.chunks.find(
+				(chunk) => chunk.name === chunkName
+			)
+			resourceRelative2HTMLPath += (targetChunk && `?v=${targetChunk.hash}` || '');
+
+//BUG 对直接导入本地文件的资源，会出现资源不存在或路径解析错误的bug，（在本人项目中）这时先采取不动原来的资源node的策略吧
