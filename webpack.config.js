@@ -40,6 +40,8 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
     outputPagemap: true
 });
 
+const WIMTBLL = require('./server/BLL/WIMTBLL.js')
+
 module.exports = {
     entry: autoWebPlugin.entry({
         // commonCss: ['./assets/font-RTC-monitor/iconfont.css', './css/index.css']
@@ -146,6 +148,12 @@ module.exports = {
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'
+        },
+        setup: function(app, server){
+          app.get('/WIMTList', (req, res) => {
+            res.json(WIMTBLL.getList())
+            // res.json(require('./json/WIMTList.json'))
+          })
         }
     }
 };

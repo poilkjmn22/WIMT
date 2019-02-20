@@ -1,5 +1,9 @@
 <template lang="html">
-  <div class="list-container">
+  <div class="list-container"
+    v-loading="getRemoteDataAjaxState === AJAX_STATE.PENDDING"
+    element-loading-text="数据加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.5)">
     <div class="chart-box" ref="WIMTChartBox">
 
     </div>
@@ -7,14 +11,59 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import {Loading} from 'element-ui'
+Vue.use(Loading)
+
+import axios from 'axios'
+import _isFunction from 'lodash/isFunction'
+
 let echarts = require('echarts/lib/echarts')
 require('echarts/lib/chart/themeRiver')
 require('echarts/lib/component/tooltip')
 
+const AJAX_STATE = require('../json/ajax-state.json')
 import * as COLOR from '../js/colors'
-import WIMTBLL from '../js/BLL/WIMTBLL'
 export default {
-
+  data(){
+    return {
+      getRemoteDataAjaxState: AJAX_STATE.ISNOTASKED,
+      AJAX_STATE
+    }
+  },
+  methods: {
+    getRemoteData(success, error){
+      this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
+      axios.request({
+        method: 'get',
+        url: '/WIMTList'
+      })
+        .then(res => {
+          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
+          if(_isFunction(success)){
+            success.call(this, res.data)
+          }
+        })
+        .catch(e => {
+          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
+          if(_isFunction(error)){
+            error.call(this, e)
+          }
+        })
+    },
+    transformSeriesData(data){
+      return [{
+          type: 'themeRiver',
+          itemStyle: {
+              emphasis: {
+                  shadowBlur: 20,
+                  shadowColor: 'rgba(0, 0, 0, 0.8)'
+              }
+          },
+          data: data
+      }]
+    }
+  },
   mounted(){
     let chart = echarts.init(this.$refs.WIMTChartBox)
     let chartOpt = {
@@ -54,19 +103,16 @@ export default {
             }
         },
 
-        series: [{
-            type: 'themeRiver',
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 20,
-                    shadowColor: 'rgba(0, 0, 0, 0.8)'
-                }
-            },
-            data: WIMTBLL.getList()
-        }]
+        series: []
     }
 
     chart.setOption(chartOpt)
+
+    this.getRemoteData(data => {
+      chart.setOption({
+        series: this.transformSeriesData(data)
+      })
+    })
   }
 }
 </script>

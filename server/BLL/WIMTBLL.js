@@ -1,8 +1,4 @@
 const WIMTList = require('../../json/WIMTList.json');
-const WIMTBLL = {
-  getList(){
+exports.getList = function() {
     return WIMTList
-  }
-};
-
-export default WIMTBLL;
+}
