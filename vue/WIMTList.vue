@@ -17,6 +17,9 @@ Vue.use(Loading)
 
 import axios from 'axios'
 import _isFunction from 'lodash/isFunction'
+import _map from 'lodash/map'
+
+import wimt from '../js/utils'
 
 let echarts = require('echarts/lib/echarts')
 require('echarts/lib/chart/themeRiver')
@@ -52,6 +55,7 @@ export default {
         })
     },
     transformSeriesData(data){
+      console.dir(_map(data, d => [wimt.utils.extractDate(d.ActivityRoundDate), wimt.utils.parseDuration(d.Duration), d.Name]))
       return [{
           type: 'themeRiver',
           itemStyle: {
@@ -60,7 +64,7 @@ export default {
                   shadowColor: 'rgba(0, 0, 0, 0.8)'
               }
           },
-          data: data
+          data: _map(data, d => [wimt.utils.extractDate(d.ActivityRoundDate), wimt.utils.parseDuration(d.Duration), d.Name])
       }]
     }
   },

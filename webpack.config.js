@@ -29,7 +29,7 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
         });
 
         return ejs.render(ejsTemplate, {
-            title: '首页',
+            title: 'Where is my time?',
             mainContainerID: _.kebabCase(pageName),
             publicPath: '/'
         }, {
@@ -151,7 +151,9 @@ module.exports = {
         },
         setup: function(app, server){
           app.get('/WIMTList', (req, res) => {
-            res.json(WIMTBLL.getList())
+            WIMTBLL.getList(results => {
+              res.json(results)
+            })
             // res.json(require('./json/WIMTList.json'))
           })
         }

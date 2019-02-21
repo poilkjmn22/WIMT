@@ -1,6 +1,6 @@
-var rtc = this.rtc || {};
+var wimt = this.wimt || {};
 var utils = {};
-rtc.utils = utils;
+wimt.utils = utils;
 utils.isNumber = function(n) {
     return typeof n === 'number' && !isNaN(n) && n < Infinity && n > -Infinity;
 };
@@ -17,7 +17,7 @@ utils.arrTail = function(data){
  * Return the first value that is not null or undefined.
  *
  * @function #pick
- * @memberof rtc.tils
+ * @memberof wimt.tils
  * @param {...*} items - Variable number of arguments to inspect.
  * @returns {*} The value of the first argument that is not null or undefined.
  */
@@ -121,6 +121,22 @@ utils.numberFormat = function(number, decimals, decimalPoint, thousandsSep) {
     return ret;
 };
 
+utils.parseDuration = function(duration){
+  if(typeof duration != 'string'){
+    return 0
+  }
+  var m = duration.match(/(\d+\.?\d*)h/)
+  return m && parseFloat(m[1]) || 0
+}
+
+utils.extractDate = function(dateStr){
+  if(typeof dateStr != 'string'){
+    return ''
+  }
+  var m = dateStr.match(/\d+\-\d{2}\-\d{2}/)
+  return m && m[0] || ''
+}
+
 utils.getStrRealLength = function(str) {
     var realLength = 0,
         len = str.length,
@@ -206,7 +222,7 @@ utils.compactPlainObject = function(obj) {
 
 // regexpHelper
 var regexpHelper = {};
-rtc.regexpHelper = regexpHelper;
+wimt.regexpHelper = regexpHelper;
 
 regexpHelper.toThousandsSep = function(str) {
     if (Object.prototype.toString.call(str) !== '[object String]') {
@@ -218,7 +234,7 @@ regexpHelper.toThousandsSep = function(str) {
 
 // puzzleHelper
 var puzzleHelper = {};
-rtc.puzzleHelper = puzzleHelper;
+wimt.puzzleHelper = puzzleHelper;
 puzzleHelper.pickCoincidedGroup = function(data, predicate, comparator){
   var res = [];
   var defaultPredicate = function(a){
@@ -277,7 +293,7 @@ puzzleHelper.findTree = function findTree(tree, cb){
 
 // domHelper
 var domHelper = {};
-rtc.domHelper = domHelper;
+wimt.domHelper = domHelper;
 domHelper.getStyles = function(elem){
   // Support: IE <=11 only, Firefox <=30 (#15098, #14150)
   // IE throws on elements created in popups
@@ -343,10 +359,10 @@ var moduleExports = freeModule && freeModule.exports === freeExports;
 
 if (freeModule) {
     // Export for Node.js.
-    (freeModule.exports = rtc).rtc = rtc;
+    (freeModule.exports = wimt).wimt = wimt;
     // Export for CommonJS support.
-    freeExports.rtc = rtc;
+    freeExports.wimt = wimt;
 } else {
     // Export to the global object.
-    root.rtc = rtc;
+    root.wimt = wimt;
 }
