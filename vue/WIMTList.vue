@@ -39,7 +39,7 @@ export default {
       this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
       axios.request({
         method: 'get',
-        url: '/WIMTList'
+        url: '/getActivityList'
       })
         .then(res => {
           this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
@@ -55,7 +55,6 @@ export default {
         })
     },
     transformSeriesData(data){
-      console.dir(_map(data, d => [wimt.utils.extractDate(d.ActivityRoundDate), wimt.utils.parseDuration(d.Duration), d.Name]))
       return [{
           type: 'themeRiver',
           itemStyle: {

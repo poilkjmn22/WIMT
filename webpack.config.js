@@ -150,8 +150,14 @@ module.exports = {
             // '/class_in': 'http://192.168.10.253:9090'
         },
         setup: function(app, server){
-          app.get('/WIMTList', (req, res) => {
-            WIMTBLL.getList(results => {
+          app.get('/getActivityList', (req, res) => {
+            WIMTBLL.getActivityList(results => {
+              res.json(results)
+            })
+            // res.json(require('./json/WIMTList.json'))
+          })
+          app.get('/getActivityClassList', (req, res) => {
+            WIMTBLL.getActivityClassList(results => {
               res.json(results)
             })
             // res.json(require('./json/WIMTList.json'))
