@@ -15,6 +15,7 @@ import Vue from 'vue'
 import {Loading} from 'element-ui'
 Vue.use(Loading)
 
+import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
 import _isFunction from 'lodash/isFunction'
 import _map from 'lodash/map'
@@ -67,7 +68,7 @@ export default {
                   shadowColor: 'rgba(0, 0, 0, 0.8)'
               }
           },
-          data: _map(data, d => [wimt.utils.extractDate(d.ActivityRoundDate), wimt.utils.parseDuration(d.Duration), d.Name])
+          data: _map(data, d => [DateTime.fromISO(d.ActivityRoundDate).toFormat('yyyy-MM-dd'), wimt.utils.parseDuration(d.Duration), d.Name])
       }]
     }
   },
