@@ -40,6 +40,7 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
     outputPagemap: true
 });
 
+var bodyParser = require('body-parser');
 const WIMTBLL = require('./server/BLL/WIMTBLL.js')
 
 module.exports = {
@@ -135,8 +136,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: PUBLIC_PATH
     },
-    externals: {
-    },
+    externals: {},
     devServer: {
         publicPath: PUBLIC_PATH,
         // index: './dist/index1.html',
@@ -149,19 +149,31 @@ module.exports = {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'
         },
-        setup: function(app, server){
-          app.get('/getActivityList', (req, res) => {
-            WIMTBLL.getActivityList(results => {
-              res.json(results)
+        setup: function(app, server) {
+            app.use(bodyParser.json())
+            app.use(bodyParser.urlencoded({
+                extended: true
+            }));
+
+            app.get('/getActivityList', (req, res) => {
+                WIMTBLL.getActivityList(results => {
+                    res.json(results)
+                })
+                // res.json(require('./json/WIMTList.json'))
             })
-            // res.json(require('./json/WIMTList.json'))
-          })
-          app.get('/getActivityClassList', (req, res) => {
-            WIMTBLL.getActivityClassList(results => {
-              res.json(results)
+            app.get('/getActivityClassList', (req, res) => {
+                WIMTBLL.getActivityClassList(results => {
+                    res.json(results)
+                })
+                // res.json(require('./json/WIMTList.json'))
             })
-            // res.json(require('./json/WIMTList.json'))
-          })
+
+            app.put('/addActivityRound', (req, res) => {
+                WIMTBLL.addActivityRound(req.body, (results) => {
+                  res.json(results)
+                })
+            })
+
         }
     }
 };

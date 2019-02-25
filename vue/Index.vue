@@ -3,8 +3,7 @@
 		<div class="header">
       <div class="header-inner w-1190 clearfix">
         <div class="logo float-left">
-          <font-awesome-icon class="logo-green" :icon="['fas', 'history']" />
-          WIM<b class="logo-green ml-3">Time</b>
+          WIM<b class="logo-green mr-3">Time</b><font-awesome-icon class="logo-green" :icon="['fas', 'history']" />
         </div>
         <div class="nav-menu float-right">
           <NavHeader>
@@ -47,7 +46,7 @@ export default {
 
 <style lang="css">
 .header{
-  border-top: 5px solid #2DD8B1;
+  border-top: 6px solid #2DD8B1;
 }
 .header-inner .logo{
   height: 56px;

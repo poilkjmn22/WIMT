@@ -125,7 +125,7 @@ utils.parseDuration = function(duration){
   if(typeof duration != 'string'){
     return 0
   }
-  var m = duration.match(/(\d+\.?\d*)h/)
+  var m = duration.match(/(\d+\.?\d*)h?/)
   return m && parseFloat(m[1]) || 0
 }
 

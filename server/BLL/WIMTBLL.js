@@ -39,3 +39,23 @@ exports.getActivityClassList = function(cb) {
 
     connection.end();
 }
+
+exports.addActivityRound = function(data, cb){
+  var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'fangqi',
+      password: '123456',
+      database: 'wimt'
+  });
+
+  connection.connect();
+
+  if (_isFunction(cb)) {
+      cb.call(this, {
+        code: 0,
+        message: '添加成功！'
+      })
+  }
+
+  connection.end();
+}
