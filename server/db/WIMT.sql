@@ -27,6 +27,34 @@ INSERT INTO `ActivityClass` VALUES (6, 'Physical', '体能');
 INSERT INTO `ActivityClass` VALUES (7, 'Sleep', '睡眠');
 INSERT INTO `ActivityClass` VALUES (8, 'Thinking', '反思');
 COMMIT;
+
+--
+-- Table structure for table `ActivityClassInfo`
+--
+
+DROP TABLE IF EXISTS `ActivityClassInfo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ActivityClassInfo` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ActivityClassID` int(11) NOT NULL DEFAULT '1',
+  `Color` char(35) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  KEY `ActivityClassID` (`ActivityClassID`),
+  CONSTRAINT `activity_ibfk_3` FOREIGN KEY (`ActivityClassID`) REFERENCES `ActivityClass` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO `ActivityClassInfo` VALUES (1, 1, '#35495e');
+INSERT INTO `ActivityClassInfo` VALUES (2, 2, '#909399');
+INSERT INTO `ActivityClassInfo` VALUES (3, 3, '#f56c6c');
+INSERT INTO `ActivityClassInfo` VALUES (4, 4, '#67c23a');
+INSERT INTO `ActivityClassInfo` VALUES (5, 5, '#ffd04b');
+INSERT INTO `ActivityClassInfo` VALUES (6, 6, '#e6a23c');
+INSERT INTO `ActivityClassInfo` VALUES (7, 7, '#000');
+INSERT INTO `ActivityClassInfo` VALUES (8, 8, '#888');
+COMMIT;
+
 --
 -- Table structure for table `Country`
 --
@@ -48,6 +76,9 @@ CREATE TABLE `ActivityRound` (
 INSERT INTO `ActivityRound` VALUES ('2019-02-19');
 INSERT INTO `ActivityRound` VALUES ('2019-02-20');
 INSERT INTO `ActivityRound` VALUES ('2019-02-21');
+INSERT INTO `ActivityRound` VALUES ('2019-02-22');
+INSERT INTO `ActivityRound` VALUES ('2019-02-23');
+INSERT INTO `ActivityRound` VALUES ('2019-02-24');
 COMMIT;
 
 --
@@ -101,6 +132,33 @@ INSERT INTO `Activity` VALUES (21, 5, '2019-02-21', '0');
 INSERT INTO `Activity` VALUES (22, 6, '2019-02-21', '0');
 INSERT INTO `Activity` VALUES (23, 7, '2019-02-21', '3h');
 INSERT INTO `Activity` VALUES (24, 8, '2019-02-21', '0');
+
+INSERT INTO `Activity` VALUES (25, 1, '2019-02-22', '8h');
+INSERT INTO `Activity` VALUES (26, 2, '2019-02-22', '6.5h');
+INSERT INTO `Activity` VALUES (27, 3, '2019-02-22', '0.5h');
+INSERT INTO `Activity` VALUES (28, 4, '2019-02-22', '1h');
+INSERT INTO `Activity` VALUES (29, 5, '2019-02-22', '0');
+INSERT INTO `Activity` VALUES (30, 6, '2019-02-22', '0');
+INSERT INTO `Activity` VALUES (31, 7, '2019-02-22', '8h');
+INSERT INTO `Activity` VALUES (32, 8, '2019-02-22', '0');
+
+INSERT INTO `Activity` VALUES (33, 1, '2019-02-23', '0h');
+INSERT INTO `Activity` VALUES (34, 2, '2019-02-23', '4h');
+INSERT INTO `Activity` VALUES (35, 3, '2019-02-23', '3h');
+INSERT INTO `Activity` VALUES (36, 4, '2019-02-23', '3h');
+INSERT INTO `Activity` VALUES (37, 5, '2019-02-23', '0');
+INSERT INTO `Activity` VALUES (38, 6, '2019-02-23', '6h');
+INSERT INTO `Activity` VALUES (39, 7, '2019-02-23', '8h');
+INSERT INTO `Activity` VALUES (40, 8, '2019-02-23', '0');
+
+INSERT INTO `Activity` VALUES (41, 1, '2019-02-24', '0h');
+INSERT INTO `Activity` VALUES (42, 2, '2019-02-24', '4h');
+INSERT INTO `Activity` VALUES (43, 3, '2019-02-24', '3h');
+INSERT INTO `Activity` VALUES (44, 4, '2019-02-24', '3h');
+INSERT INTO `Activity` VALUES (45, 5, '2019-02-24', '0');
+INSERT INTO `Activity` VALUES (46, 6, '2019-02-24', '6h');
+INSERT INTO `Activity` VALUES (47, 7, '2019-02-24', '8h');
+INSERT INTO `Activity` VALUES (48, 8, '2019-02-24', '0');
 COMMIT;
 
 SET AUTOCOMMIT=1;

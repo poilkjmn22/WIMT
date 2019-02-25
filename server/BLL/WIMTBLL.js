@@ -30,7 +30,7 @@ exports.getActivityClassList = function(cb) {
 
     connection.connect();
 
-    connection.query('SELECT * from activityclass', function(error, results, fields) {
+    connection.query('SELECT * from activityclass ac left join activityclassinfo aci on ac.id = aci.activityclassid', function(error, results, fields) {
         if (error) throw error;
         if (_isFunction(cb)) {
             cb.call(this, results)

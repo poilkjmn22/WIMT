@@ -24,6 +24,7 @@ import wimt from '../js/utils'
 let echarts = require('echarts/lib/echarts')
 require('echarts/lib/chart/themeRiver')
 require('echarts/lib/component/tooltip')
+require('echarts/lib/component/legend')
 
 const AJAX_STATE = require('../json/ajax-state.json')
 import * as COLOR from '../js/colors'
@@ -37,16 +38,19 @@ export default {
   methods: {
     getRemoteData(success, error){
       this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
-      axios.request({
+      axios.all([axios.request({
         method: 'get',
         url: '/getActivityList'
-      })
-        .then(res => {
+      }), axios.request({
+        method: 'get',
+        url: '/getActivityClassList'
+      })])
+        .then(axios.spread((resActivityList, resActivityClassList) => {
           this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
           if(_isFunction(success)){
-            success.call(this, res.data)
+            success.call(this, resActivityList.data, resActivityClassList.data)
           }
-        })
+        }))
         .catch(e => {
           this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
           if(_isFunction(error)){
@@ -82,9 +86,6 @@ export default {
                 }
             }
         },
-        legend: {
-            data: ['DQ', 'TY', 'SS', 'QG', 'SY', 'DD']
-        },
         singleAxis: {
             top: 50,
             bottom: 50,
@@ -111,9 +112,14 @@ export default {
 
     chart.setOption(chartOpt)
 
-    this.getRemoteData(data => {
+    this.getRemoteData((activityList, activityClassList) => {
       chart.setOption({
-        series: this.transformSeriesData(data)
+        color: _map(activityClassList, 'Color'),
+        legend: {
+          data: _map(activityClassList, 'Name'),
+          bottom: 'bottom'
+        },
+        series: this.transformSeriesData(activityList)
       })
     })
   }
