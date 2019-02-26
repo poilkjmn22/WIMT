@@ -49,7 +49,7 @@ export default {
         .then(axios.spread((resActivityList, resActivityClassList) => {
           this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
           if(_isFunction(success)){
-            success.call(this, resActivityList.data, resActivityClassList.data)
+            success.call(this, resActivityList.data, resActivityClassList.data.results)
           }
         }))
         .catch(e => {
