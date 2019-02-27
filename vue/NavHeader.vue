@@ -1,5 +1,5 @@
 <template lang="html">
-  <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect" :router="true">
+  <el-menu :default-active="activeIndex" mode="horizontal" :router="true">
     <el-menu-item :index="parseNavMenuItemIndex('list')" :route="{name: 'list'}">首页</el-menu-item>
     <el-submenu index="2">
       <template slot="title"><i class="el-icon-setting"></i>设置</template>
@@ -27,9 +27,6 @@ export default {
     }
   },
   methods: {
-    handleSelect(index, indexPath){
-      this.activeIndex = index
-    },
     parseNavMenuItemIndex(routeName){
       return _kebabCase(routeName)
     }

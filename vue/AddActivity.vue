@@ -37,6 +37,8 @@ Vue.use(Loading)
 Vue.use(Row)
 Vue.use(Col)
 
+import wimt from '../js/utils'
+
 import _isFunction from 'lodash/isFunction'
 import _chunk from 'lodash/chunk'
 import _merge from 'lodash/merge'
@@ -57,6 +59,7 @@ const validateActivityDuration = function(rule, value, callback){
     callback()
   }
 }
+
 export default {
   data(){
     return {
@@ -66,7 +69,7 @@ export default {
       ActivityRoundDate: DateTime.local().minus({days: 1}).toJSDate(),
       form: {},
       ActivityClassList: [],
-      ActivityClassListChunkSize: 3,
+      ActivityClassListChunkSize: 2,
       formRules: {}
     }
   },
@@ -154,6 +157,35 @@ export default {
             error.call(this, e)
           }
         })
+    }
+  },
+  watch: {
+    form: {
+      deep: true,
+      handler: function(val, oldVal){
+        //确保总和是24h
+        var last = ''
+        var total = 0
+        var emptyValCount = 0
+        for (var key in val) {
+          if (val.hasOwnProperty(key)) {
+            if(val[key] == ''){
+              last = key
+              emptyValCount += 1
+            }
+            total += wimt.utils.parseDuration(val[key])
+          }
+        }
+        if(emptyValCount === 1){
+          val[last] = parseFloat((24 - total).toFixed(1))
+        }
+        // if(emptyValCount === 0 && parseInt(total) != 24){
+        //   Message({
+        //     type: 'warning',
+        //     message: '总时间不是24h，请重新检查！'
+        //   })
+        // }
+      }
     }
   },
   mounted(){
