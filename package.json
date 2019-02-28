@@ -58,6 +58,7 @@
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.8",
+    "highcharts": "^7.0.3",
     "lodash": "^4.17.11",
     "luxon": "^1.11.3",
     "mysql": "^2.16.0",

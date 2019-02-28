@@ -110,7 +110,7 @@ export default {
   },
   mounted(){
     this.getRemoteData((activityList, activityClassList) => {
-      chartHelper.drawChart('echarts', this.$refs.WIMTChartBox, {activityList, activityClassList})
+      chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {activityList, activityClassList})
       this.activityListTable = _.chain(activityList)
         .groupBy('ActivityRoundDate')
         .map((gv, gk) => {
