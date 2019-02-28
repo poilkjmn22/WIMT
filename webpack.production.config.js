@@ -144,7 +144,7 @@ module.exports = {
         alias: {
             Components: './components'
         },
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.vue', '.json'],
         modules: ['node_modules']
     },
     externals: {

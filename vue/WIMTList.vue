@@ -55,14 +55,10 @@ import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
 import _ from 'lodash'
 
-import wimt from '../js/utils'
-
-let echarts = require('echarts/lib/echarts')
-require('echarts/lib/chart/themeRiver')
-require('echarts/lib/component/tooltip')
-require('echarts/lib/component/legend')
+import chartHelper from '../js/helper/chartHelper'
 
 const AJAX_STATE = require('../json/ajax-state.json')
+const CHART_LIB = require('../json/chart-lib.json')
 import * as COLOR from '../js/colors'
 export default {
   data(){
@@ -97,20 +93,7 @@ export default {
           }
         })
     },
-    transformSeriesData(data){
-      return [{
-          type: 'themeRiver',
-          itemStyle: {
-              emphasis: {
-                  shadowBlur: 20,
-                  shadowColor: 'rgba(0, 0, 0, 0.8)'
-              }
-          },
-          data: _.map(data, d => [DateTime.fromISO(d.ActivityRoundDate).toFormat('yyyy-MM-dd'), wimt.utils.parseDuration(d.Duration), d.Name])
-      }]
-    },
     onShowTable(){
-      console.log('触发事件！')
       this.showTable = !this.showTable;
     },
     formatColumn(row, cell, cellValue){
@@ -126,49 +109,8 @@ export default {
     }
   },
   mounted(){
-    let chart = echarts.init(this.$refs.WIMTChartBox)
-    let chartOpt = {
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                type: 'line',
-                lineStyle: {
-                    color: 'rgba(0,0,0,0.2)',
-                    width: 1,
-                    type: 'solid'
-                }
-            }
-        },
-        singleAxis: {
-            top: 50,
-            bottom: 50,
-            axisTick: {},
-            axisLabel: {},
-            type: 'time',
-            axisPointer: {
-                animation: true,
-                label: {
-                    show: true
-                }
-            },
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    type: 'dashed',
-                    opacity: 0.2
-                }
-            }
-        },
-        grid: {
-          left: 10,
-          right: 10
-        },
-        series: []
-    }
-
-    chart.setOption(chartOpt)
-
     this.getRemoteData((activityList, activityClassList) => {
+      chartHelper.drawChart('echarts', this.$refs.WIMTChartBox, {activityList, activityClassList})
       this.activityListTable = _.chain(activityList)
         .groupBy('ActivityRoundDate')
         .map((gv, gk) => {
@@ -181,14 +123,6 @@ export default {
         })
         .value()
       this.activityClassList = activityClassList
-      chart.setOption({
-        color: _.map(activityClassList, 'Color'),
-        legend: {
-          data: _.map(activityClassList, 'Name'),
-          bottom: 'bottom'
-        },
-        series: this.transformSeriesData(activityList)
-      })
     })
   }
 }
