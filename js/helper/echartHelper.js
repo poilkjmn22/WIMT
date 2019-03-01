@@ -1,7 +1,7 @@
 import DateTime from 'luxon/src/datetime.js'
 import _ from 'lodash'
 
-import wimt from '../../js/utils'
+import wimt from '../utils'
 
 let echarts = require('echarts/lib/echarts')
 require('echarts/lib/chart/themeRiver')

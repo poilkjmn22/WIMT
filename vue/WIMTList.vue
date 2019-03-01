@@ -65,34 +65,29 @@ export default {
     return {
       getRemoteDataAjaxState: AJAX_STATE.ISNOTASKED,
       AJAX_STATE,
-      activityListTable: [],
-      activityClassList: [],
       showTable: false
     }
   },
+  computed: {
+      activityClassList(){
+        return this.$store.state.activityClassList
+      },
+      activityListTable(){
+        let {activityList, activityClassList} = this.$store.state
+        return _.chain(activityList)
+          .groupBy('ActivityRoundDate')
+          .map((gv, gk) => {
+            return _.merge({
+              ActivityRoundDate: gk
+            }, _.reduce(activityClassList, (res, ac) => {
+              res[ac.Name] = _.get(_.find(gv, ['Name', ac.Name]), 'Duration') || ''
+              return res
+            }, {}))
+          })
+          .value()
+      }
+  },
   methods: {
-    getRemoteData(success, error){
-      this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
-      axios.all([axios.request({
-        method: 'get',
-        url: '/getActivityList'
-      }), axios.request({
-        method: 'get',
-        url: '/getActivityClassList'
-      })])
-        .then(axios.spread((resActivityList, resActivityClassList) => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          if(_.isFunction(success)){
-            success.call(this, resActivityList.data, resActivityClassList.data.results)
-          }
-        }))
-        .catch(e => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          if(_.isFunction(error)){
-            error.call(this, e)
-          }
-        })
-    },
     onShowTable(){
       this.showTable = !this.showTable;
     },
@@ -109,21 +104,28 @@ export default {
     }
   },
   mounted(){
-    this.getRemoteData((activityList, activityClassList) => {
-      chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {activityList, activityClassList})
-      this.activityListTable = _.chain(activityList)
-        .groupBy('ActivityRoundDate')
-        .map((gv, gk) => {
-          return _.merge({
-            ActivityRoundDate: gk
-          }, _.reduce(activityClassList, (res, ac) => {
-            res[ac.Name] = _.get(_.find(gv, ['Name', ac.Name]), 'Duration') || ''
-            return res
-          }, {}))
+    if (this.$store.state.shouldUpdateActivityList === true) {//状态被更新了
+        this.$store.dispatch('getRDAllActivityListAndActivityClassList', this).then(() => {
+            let {
+                activityList,
+                activityClassList
+            } = this.$store.state
+            chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
+                activityList,
+                activityClassList
+            })
+            this.$store.commit('shouldUpdateActivityList', false)
         })
-        .value()
-      this.activityClassList = activityClassList
-    })
+    }else{//状态被缓存了
+      let {
+          activityList,
+          activityClassList
+      } = this.$store.state
+      chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
+          activityList,
+          activityClassList
+      })
+    }
   }
 }
 </script>

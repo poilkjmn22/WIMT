@@ -12,10 +12,10 @@
       </div>
 		</div>
 		<div class="body w-1190">
-			<keep-alive>
+			<!-- <keep-alive> -->
 				<router-view>
 				</router-view>
-			</keep-alive>
+			<!-- </keep-alive> -->
 		</div>
 		<div class="footer">
 

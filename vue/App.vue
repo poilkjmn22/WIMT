@@ -11,6 +11,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import routes from '../js/routes.js'
+import store from '../js/store/index'
 import NavHeader from './NavHeader'
 
 const router = new VueRouter({
@@ -19,6 +20,7 @@ const router = new VueRouter({
 });
 export default {
   router,
+  store,
   components: {
     NavHeader
   }

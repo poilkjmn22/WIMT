@@ -1,4 +1,33 @@
-var wimt = this.wimt || {};
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+var wimt = root.wimt || {};
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+if (freeModule) {
+    // Export for Node.js.
+    (freeModule.exports = wimt).wimt = wimt;
+    // Export for CommonJS support.
+    freeExports.wimt = wimt;
+} else {
+    // Export to the global object.
+    root.wimt = wimt;
+}
+
 var utils = {};
 wimt.utils = utils;
 utils.isNumber = function(n) {
@@ -338,31 +367,3 @@ domHelper._detectTransformSupport = function(featureName) {
         return isSupported;
     }
 // EOF domHelper
-
-/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-/** Detect free variable `exports`. */
-var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
-
-/** Detect free variable `module`. */
-var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
-
-/** Detect the popular CommonJS extension `module.exports`. */
-var moduleExports = freeModule && freeModule.exports === freeExports;
-
-if (freeModule) {
-    // Export for Node.js.
-    (freeModule.exports = wimt).wimt = wimt;
-    // Export for CommonJS support.
-    freeExports.wimt = wimt;
-} else {
-    // Export to the global object.
-    root.wimt = wimt;
-}

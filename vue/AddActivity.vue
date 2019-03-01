@@ -8,8 +8,8 @@
       <el-form-item label="活动日期">
         <el-date-picker type="date" placeholder="选择日期" v-model="ActivityRoundDate"></el-date-picker>
       </el-form-item>
-      <el-row v-for="itemChunk in ActivityClassListChunk">
-        <el-col v-for="item in itemChunk" :span="24 / ActivityClassListChunkSize">
+      <el-row v-for="itemChunk in activityClassListChunk">
+        <el-col v-for="item in itemChunk" :span="24 / activityClassListChunkSize">
           <el-form-item :label="item.Name" :prop="item.Name">
             <el-input v-model.trim="form[item.Name]" class="w-200" clearable :placeholder="'请输入' + item.Name">
             </el-input>
@@ -68,14 +68,16 @@ export default {
       AJAX_STATE,
       ActivityRoundDate: DateTime.local().minus({days: 1}).toJSDate(),
       form: {},
-      ActivityClassList: [],
-      ActivityClassListChunkSize: 2,
+      activityClassListChunkSize: 2,
       formRules: {}
     }
   },
   computed: {
-    ActivityClassListChunk(){
-      return _chunk(this.ActivityClassList, this.ActivityClassListChunkSize)
+    activityClassList(){
+      return this.$store.state.activityClassList
+    },
+    activityClassListChunk(){
+      return _chunk(this.activityClassList, this.activityClassListChunkSize)
     }
   },
   methods: {
@@ -110,6 +112,8 @@ export default {
                   message: res.data.message
                 })
                 this.initForm()
+                //通知保存的activityList状态应该要更新了
+                this.$store.commit('shouldUpdateActivityList', true)
               }else{
                 Message({
                   type: 'error',
@@ -189,11 +193,12 @@ export default {
     }
   },
   mounted(){
-    this.getRemoteData(data => {
-      this.ActivityClassList = data
-      this.initForm()
-      this.initFormRules()
-    })
+    if(this.activityClassList.length <= 0){
+      this.$store.dispatch('getRDActivityClassList').then(()=> {
+        this.initForm()
+        this.initFormRules()
+      })
+    }
   }
 }
 </script>
