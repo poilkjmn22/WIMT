@@ -2,15 +2,23 @@ import Highcharts from 'highcharts'
 import Exporting from 'highcharts/modules/exporting'
 import Annotations from 'highcharts/modules/annotations'
 import Streamgraph from 'highcharts/modules/streamgraph'
+import NoDataToDisplay from 'highcharts/modules/no-data-to-display'
 Exporting(Highcharts)
 Annotations(Highcharts)
 Streamgraph(Highcharts)
+NoDataToDisplay(Highcharts)
 
 import _ from 'lodash'
 import wimt from '../utils'
 import DateTime from 'luxon/src/datetime'
 
 const SUC = require('../../json/special-unicode-character')
+
+Highcharts.setOptions({
+  lang: {
+    noData: '暂无数据'
+  }
+})
 
 function drawChart(chartBox, {
     activityList,

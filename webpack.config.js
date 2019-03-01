@@ -174,6 +174,12 @@ module.exports = {
                 })
             })
 
+            app.delete('/deleteActivity', (req, res) => {
+                WIMTBLL.deleteActivity(req.body, (results) => {
+                  res.json(results)
+                })
+            })
+
         }
     }
 };

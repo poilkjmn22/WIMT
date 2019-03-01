@@ -22,12 +22,15 @@
         <el-table-column v-for="ac in activityClassList" :prop="ac.Name" :label="ac.Name" align="center">
         </el-table-column>
         <el-table-column label="操作" align="center">
-          <span class=" opra-icon">
-            <font-awesome-icon transform="grow-2" :style="{color: '#2DD8B1'}" :icon="['far', 'edit']" />
-          </span>
-          <span class=" opra-icon">
-            <font-awesome-icon transform="grow-2" :style="{color: '#f56c6c'}" :icon="['far', 'trash-alt']" />
-          </span>
+          <template slot-scope="scope">
+            <span class=" opra-icon" title="编辑">
+              <font-awesome-icon @click="onEditActivity(scope.row)" transform="grow-2" :style="{color: '#2DD8B1'}" :icon="['far', 'edit']" />
+            </span>
+            <span class=" opra-icon" title="删除">
+              <font-awesome-icon @click="onDeleteActivity(scope.row)" transform="grow-2" :style="{color: '#f56c6c'}" :icon="['far', 'trash-alt']" />
+            </span>
+          </template>
+
         </el-table-column>
       </el-table>
     </div>
@@ -37,7 +40,7 @@
 <script>
 // require('@fortawesome/fontawesome-free/css/all.css');
 import Vue from 'vue'
-import {Loading, Table, TableColumn} from 'element-ui'
+import {Loading, Table, TableColumn, Message} from 'element-ui'
 Vue.use(Loading)
 Vue.use(Table)
 Vue.use(TableColumn)
@@ -101,21 +104,29 @@ export default {
 
       }
       return res
+    },
+    onEditActivity(row){
+
+    },
+    onDeleteActivity(row){
+      this.$store.dispatch('deleteActivity', {row, vmWIMTList: this})
+        .then((res) => {
+          Message({
+            type: 'success',
+            message: '删除成功！'
+          })
+        })
+        .catch((res) => {
+          Message({
+            type: 'error',
+            message: res.message
+          })
+        })
     }
   },
   mounted(){
     if (this.$store.state.shouldUpdateActivityList === true) {//状态被更新了
-        this.$store.dispatch('getRDAllActivityListAndActivityClassList', this).then(() => {
-            let {
-                activityList,
-                activityClassList
-            } = this.$store.state
-            chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
-                activityList,
-                activityClassList
-            })
-            this.$store.commit('shouldUpdateActivityList', false)
-        })
+        this.$store.dispatch('getRDAllActivityListAndActivityClassList', this)
     }else{//状态被缓存了
       let {
           activityList,
