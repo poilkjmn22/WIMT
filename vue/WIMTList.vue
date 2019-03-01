@@ -26,8 +26,11 @@
             <span class=" opra-icon" title="编辑">
               <font-awesome-icon @click="onEditActivity(scope.row)" transform="grow-2" :style="{color: '#2DD8B1'}" :icon="['far', 'edit']" />
             </span>
-            <span class=" opra-icon" title="删除">
+            <span v-if="scope.row.Disable == 0" class=" opra-icon" title="删除">
               <font-awesome-icon @click="onDeleteActivity(scope.row)" transform="grow-2" :style="{color: '#f56c6c'}" :icon="['far', 'trash-alt']" />
+            </span>
+            <span v-if="scope.row.Disable == 1" class=" opra-icon" title="恢复">
+              <font-awesome-icon @click="onRestoreActivity(scope.row)" transform="grow-2" :style="{color: '#2DD8B1'}" :icon="['fas', 'undo']" />
             </span>
           </template>
 
@@ -46,11 +49,11 @@ Vue.use(Table)
 Vue.use(TableColumn)
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTable as fasFaTable, faEdit as fasFaEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTable as fasFaTable, faEdit as fasFaEdit, faUndo as fasFaUndo } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as farFaEdit, faTrashAlt as farFaTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt)
+library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt, fasFaUndo)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -81,7 +84,8 @@ export default {
           .groupBy('ActivityRoundDate')
           .map((gv, gk) => {
             return _.merge({
-              ActivityRoundDate: gk
+              ActivityRoundDate: gk,
+              Disable: _.get(gv, [0, 'Disable'])
             }, _.reduce(activityClassList, (res, ac) => {
               res[ac.Name] = _.get(_.find(gv, ['Name', ac.Name]), 'Duration') || ''
               return res
@@ -114,6 +118,21 @@ export default {
           Message({
             type: 'success',
             message: '删除成功！'
+          })
+        })
+        .catch((res) => {
+          Message({
+            type: 'error',
+            message: res.message
+          })
+        })
+    },
+    onRestoreActivity(row){
+      this.$store.dispatch('restoreActivity', {row, vmWIMTList: this})
+        .then((res) => {
+          Message({
+            type: 'success',
+            message: '恢复成功！'
           })
         })
         .catch((res) => {

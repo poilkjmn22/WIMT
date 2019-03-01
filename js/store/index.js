@@ -5,6 +5,7 @@ Vue.use(Vuex)
 import chartHelper from '../helper/chartHelper'
 
 import axios from 'axios'
+import _ from 'lodash'
 import DateTime from 'luxon/src/datetime'
 const AJAX_STATE = require('../../json/ajax-state')
 
@@ -73,9 +74,9 @@ const store = new Vuex.Store({
             let {
                 activityList,
                 activityClassList
-            } = state
+            } = state 
             chartHelper.drawChart('highcharts', vmWIMTList.$refs.WIMTChartBox, {
-                activityList,
+                activityList: _.filter(activityList, a => a.Disable == 0),
                 activityClassList
             })
             commit('shouldUpdateActivityList', false)
@@ -88,8 +89,38 @@ const store = new Vuex.Store({
         }) {
             return new Promise((resolve, reject) => {
                 axios.request({
-                        method: 'delete',
+                        method: 'put',
                         url: '/deleteActivity',
+                        data: {
+                            ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
+                        }
+                    })
+                    .then(res => {
+                        if (res.data.code === 0) {
+                            dispatch('getRDAllActivityListAndActivityClassList', vmWIMTList)
+                            resolve(res.data)
+                        } else {
+                            reject(res.data)
+                        }
+                    })
+                    .catch(e => {
+                        reject({
+                            code: -1,
+                            message: '未知错误！'
+                        })
+                    })
+            })
+        },
+        restoreActivity({
+            dispatch
+        }, {
+            row,
+            vmWIMTList
+        }) {
+            return new Promise((resolve, reject) => {
+                axios.request({
+                        method: 'put',
+                        url: '/restoreActivity',
                         data: {
                             ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
                         }

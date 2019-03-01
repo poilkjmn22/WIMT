@@ -174,8 +174,14 @@ module.exports = {
                 })
             })
 
-            app.delete('/deleteActivity', (req, res) => {
+            app.put('/deleteActivity', (req, res) => {
                 WIMTBLL.deleteActivity(req.body, (results) => {
+                  res.json(results)
+                })
+            })
+
+            app.put('/restoreActivity', (req, res) => {
+                WIMTBLL.restoreActivity(req.body, (results) => {
                   res.json(results)
                 })
             })

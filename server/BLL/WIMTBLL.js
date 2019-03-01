@@ -10,7 +10,7 @@ exports.getActivityList = function(cb) {
 
     connection.connect();
 
-    connection.query('SELECT * from activity a left join activityclass ac on a.activityclassid = ac.id where a.disable = 0', function(error, results, fields) {
+    connection.query('SELECT * from activity a left join activityclass ac on a.activityclassid = ac.id', function(error, results, fields) {
         if (error) {
             cb.call(this, {
                 code: error.errno,
@@ -137,6 +137,36 @@ exports.deleteActivity = function(data, cb) {
     connection.connect();
 
     connection.query(`update activity set disable = '1' where activityrounddate = '${data.ActivityRoundDate}'`, function(error, results, fields) {
+        if (error) {
+            cb.call(this, {
+                code: error.errno,
+                message: error.sqlMessage
+            })
+            throw error
+        };
+        cb.call(this, {
+            results,
+            code: 0
+        })
+    });
+
+    connection.end();
+}
+
+exports.restoreActivity = function(data, cb) {
+    if (!_.isFunction(cb)) {
+        return
+    }
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'fangqi',
+        password: '123456',
+        database: 'wimt'
+    });
+
+    connection.connect();
+
+    connection.query(`update activity set disable = '0' where activityrounddate = '${data.ActivityRoundDate}'`, function(error, results, fields) {
         if (error) {
             cb.call(this, {
                 code: error.errno,
