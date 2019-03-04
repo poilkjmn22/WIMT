@@ -88,7 +88,7 @@ exports.addActivityRound = function(data, cb) {
                         })
                         throw err
                     }
-                    var sqlActivity = _.map(results, ac => `insert into activity values (null, ${ac.ID}, '${data.ActivityRoundDate}', '${data[ac.Name]}')`).join(';')
+                    var sqlActivity = _.map(results, ac => `insert into activity values (null, ${ac.ID}, '${data.ActivityRoundDate}', '${data[ac.Name]}', '0')`).join(';')
                     connection.release()
                     pool.getConnection((error, connection) => {
                         connection.query(sqlActivity, (err, results, fields) => {
