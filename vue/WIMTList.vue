@@ -110,7 +110,12 @@ export default {
       return res
     },
     onEditActivity(row){
-
+      this.$router.push({
+        name: 'editActivity',
+        params: {
+          activitydate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
+        }
+      })
     },
     onDeleteActivity(row){
       this.$store.dispatch('deleteActivity', {row, vmWIMTList: this})

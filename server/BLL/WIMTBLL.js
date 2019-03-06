@@ -182,3 +182,70 @@ exports.restoreActivity = function(data, cb) {
 
     connection.end();
 }
+
+
+exports.getActivityRound = function(data, cb) {
+    if (!_.isFunction(cb)) {
+        return
+    }
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'fangqi',
+        password: '123456',
+        database: 'wimt'
+    });
+
+    connection.connect();
+    connection.query(`SELECT * from activity a left join activityclass ac on a.activityclassid = ac.id where a.ActivityRoundDate = '${data.ActivityRoundDate}'`, function(error, results, fields) {
+        if (error) {
+            cb.call(this, {
+                code: error.errno,
+                message: error.sqlMessage
+            })
+            throw error
+        };
+        cb.call(this, {
+            results,
+            code: 0
+        })
+    });
+
+    connection.end();
+}
+
+exports.updateActivityRound = function(data, cb) {
+    if (!_.isFunction(cb)) {
+        return
+    }
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'fangqi',
+        password: '123456',
+        database: 'wimt',
+        multipleStatements: true
+    });
+
+    connection.connect();
+    let updateSql = _.reduce(data, (res, v, k, obj) => {
+      if(k !== 'ActivityRoundDate'){
+        res.push(`update activity a left join activityclass ac on a.activityclassid=ac.id set duration='${v}' where ac.name='${k}' and activityrounddate='${obj.ActivityRoundDate}'`)
+      }
+      return res
+    }, []).join(';')+';'
+    console.log(updateSql)
+    connection.query(updateSql, function(error, results, fields) {
+        if (error) {
+            cb.call(this, {
+                code: error.errno,
+                message: error.sqlMessage
+            })
+            throw error
+        };
+        cb.call(this, {
+            message: '更新成功！',
+            code: 0
+        })
+    });
+
+    connection.end();
+}

@@ -49,17 +49,21 @@ const store = new Vuex.Store({
         },
         getRDActivityClassList(context, vmWIMTList) {
             return new Promise((resolve, reject) => {
+              if(context.state.activityClassList.length > 0){
+                resolve(context.state.activityClassList)
+              }else{
                 axios.request({
                         method: 'get',
                         url: '/getActivityClassList'
                     })
                     .then(res => {
                         context.commit('setActivityClassList', res.data.results)
-                        resolve(res.data)
+                        resolve(res.data.results)
                     })
                     .catch(e => {
                         reject(e)
                     })
+              }
             })
         },
         async getRDAllActivityListAndActivityClassList({
@@ -74,7 +78,7 @@ const store = new Vuex.Store({
             let {
                 activityList,
                 activityClassList
-            } = state 
+            } = state
             chartHelper.drawChart('highcharts', vmWIMTList.$refs.WIMTChartBox, {
                 activityList: _.filter(activityList, a => a.Disable == 0),
                 activityClassList
@@ -140,6 +144,27 @@ const store = new Vuex.Store({
                         })
                     })
             })
+        },
+        getRDActivityRound({}, {ActivityRoundDate}){
+          return new Promise((resolve, reject) => {
+            axios.request({
+              url: '/getActivityRound',
+              method: 'get',
+              params: {
+                ActivityRoundDate
+              }
+            })
+              .then(res => {
+                if(res.data.code === 0){
+                  resolve(res.data.results)
+                }else{
+                  reject(res.data)
+                }
+              })
+              .catch(e => {
+                reject(e)
+              })
+          })
         }
     }
 })

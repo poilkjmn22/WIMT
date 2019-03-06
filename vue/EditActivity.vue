@@ -6,7 +6,7 @@
     element-loading-background="rgba(0, 0, 0, 0.5)">
     <el-form ref="form" :model="form" label-width="120px" label-suffix="" :rules="formRules">
       <el-form-item label="活动日期">
-        <el-date-picker type="date" placeholder="选择日期" v-model="ActivityRoundDate"></el-date-picker>
+        <el-date-picker readonly type="date" placeholder="选择日期" v-model="ActivityRoundDate"></el-date-picker>
       </el-form-item>
       <el-row v-for="itemChunk in activityClassListChunk">
         <el-col v-for="item in itemChunk" :span="24 / activityClassListChunkSize">
@@ -39,10 +39,7 @@ Vue.use(Col)
 
 import wimt from '../js/utils'
 
-import _isFunction from 'lodash/isFunction'
-import _chunk from 'lodash/chunk'
-import _merge from 'lodash/merge'
-import _reduce from 'lodash/reduce'
+import _ from 'lodash'
 
 import axios from 'axios'
 const AJAX_STATE = require('../json/ajax-state.json')
@@ -66,7 +63,6 @@ export default {
       getRemoteDataAjaxState: AJAX_STATE.ISNOTASKED,
       submitAjaxState: AJAX_STATE.ISNOTASKED,
       AJAX_STATE,
-      ActivityRoundDate: DateTime.local().minus({days: 1}).toJSDate(),
       form: {},
       activityClassListChunkSize: 2,
       formRules: {}
@@ -77,18 +73,27 @@ export default {
       return this.$store.state.activityClassList
     },
     activityClassListChunk(){
-      return _chunk(this.activityClassList, this.activityClassListChunkSize)
+      return _.chunk(this.activityClassList, this.activityClassListChunkSize)
+    },
+    ActivityRoundDate(){
+      return new Date(this.$route.params.activitydate)
     }
   },
   methods: {
-    initForm(){
-      this.form = _reduce(this.ActivityClassList, (res, d) => {
-        res[d.Name] = ''
-        return res
-      }, {})
+    initForm({
+        activityround,
+        activityclasslist
+    }) {
+        this.form = _.reduce(activityclasslist, (res, d) => {
+            res[d.Name] = _.chain(activityround)
+                .find(['Name', d.Name])
+                .get('Duration')
+                .value()
+            return res
+        }, {})
     },
-    initFormRules(){
-      this.formRules = _reduce(this.ActivityClassList, (res, d) => {
+    initFormRules(activityclasslist){
+      this.formRules = _.reduce(activityclasslist, (res, d) => {
         res[d.Name] = {validator: validateActivityDuration, trigger: 'blur'}
         return res
       }, {})
@@ -99,8 +104,8 @@ export default {
           this.submitAjaxState = AJAX_STATE.PENDDING
           axios.request({
             method: 'put',
-            url: '/addActivityRound',
-            data: _merge(this.form, {
+            url: '/updateActivityRound',
+            data: _.merge(this.form, {
               ActivityRoundDate: DateTime.fromJSDate(this.ActivityRoundDate).toFormat('yyyy-MM-dd')
             })
           })
@@ -111,7 +116,6 @@ export default {
                   type: 'success',
                   message: res.data.message
                 })
-                this.initForm()
                 //通知保存的activityList状态应该要更新了
                 this.$store.commit('shouldUpdateActivityList', true)
               }else{
@@ -131,36 +135,6 @@ export default {
     },
     onReset(){
       this.$refs.form.resetFields()
-    },
-    getRemoteData(success, error){
-      this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
-      axios.request({
-        method: 'get',
-        url: '/getActivityClassList'
-      })
-        .then(res => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          if(res.data.code === 0){
-            if(_isFunction(success)){
-              success.call(this, res.data.results)
-            }
-          }else {
-            Message({
-              type: 'error',
-              message: res.data.message
-            })
-          }
-        })
-        .catch(e => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          Message({
-            type: 'error',
-            message: '未知错误!'
-          })
-          if(_isFunction(error)){
-            error.call(this, e)
-          }
-        })
     }
   },
   watch: {
@@ -192,13 +166,31 @@ export default {
       }
     }
   },
-  mounted(){
-    if(this.activityClassList.length <= 0){
-      this.$store.dispatch('getRDActivityClassList').then(()=> {
-        this.initForm()
-        this.initFormRules()
+  beforeRouteUpdate(){
+    // this.ActivityRoundDate = new Date(this.$route.params.activitydate)
+    this.$store.dispatch('getRDActivityRound', {
+      ActivityRoundDate: this.$route.params.activitydate
+    })
+      .then((activityround)=> {
+        this.$store.dispatch('getRDActivityClassList')
+          .then((activityclasslist)=> {
+            this.initForm({activityround, activityclasslist})
+            this.initFormRules(activityclasslist)
+          })
       })
-    }
+  },
+  mounted(){
+    // this.ActivityRoundDate = new Date(this.$route.params.activitydate)
+    this.$store.dispatch('getRDActivityRound', {
+      ActivityRoundDate: this.$route.params.activitydate
+    })
+      .then((activityround)=> {
+        this.$store.dispatch('getRDActivityClassList')
+          .then((activityclasslist)=> {
+            this.initForm({activityround, activityclasslist})
+            this.initFormRules(activityclasslist)
+          })
+      })
   }
 }
 </script>

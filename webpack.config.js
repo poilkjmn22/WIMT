@@ -190,6 +190,18 @@ module.exports = {
                 })
             })
 
+            app.get('/getActivityRound', (req, res) => {
+                WIMTBLL.getActivityRound(req.query, results => {
+                    res.json(results)
+                })
+            })
+
+            app.put('/updateActivityRound', (req, res) => {
+                WIMTBLL.updateActivityRound(req.body, (results) => {
+                  res.json(results)
+                })
+            })
+
         }
     }
 };

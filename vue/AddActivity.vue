@@ -131,36 +131,6 @@ export default {
     },
     onReset(){
       this.$refs.form.resetFields()
-    },
-    getRemoteData(success, error){
-      this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
-      axios.request({
-        method: 'get',
-        url: '/getActivityClassList'
-      })
-        .then(res => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          if(res.data.code === 0){
-            if(_isFunction(success)){
-              success.call(this, res.data.results)
-            }
-          }else {
-            Message({
-              type: 'error',
-              message: res.data.message
-            })
-          }
-        })
-        .catch(e => {
-          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-          Message({
-            type: 'error',
-            message: '未知错误!'
-          })
-          if(_isFunction(error)){
-            error.call(this, e)
-          }
-        })
     }
   },
   watch: {
@@ -193,12 +163,10 @@ export default {
     }
   },
   mounted(){
-    if(this.activityClassList.length <= 0){
-      this.$store.dispatch('getRDActivityClassList').then(()=> {
-        this.initForm()
-        this.initFormRules()
-      })
-    }
+    this.$store.dispatch('getRDActivityClassList').then(()=> {
+      this.initForm()
+      this.initFormRules()
+    })
   }
 }
 </script>
