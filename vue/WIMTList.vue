@@ -5,9 +5,8 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
     <div class="toolbox absolute">
-        <span @click="onShowTable" class="toolitem">
-          <font-awesome-icon class="fa-2x" :style="{color: showTable ? '#2DD8B1' : ''}" :icon="['fas', 'table']" />
-        </span>
+          <font-awesome-icon @click="onShowTable" class="fa-2x toolitem" :style="{color: showTable ? '#2DD8B1' : ''}" :icon="['fas', 'table']" />
+          <download-menu class="toolitem" :data-rows="downloadDataRows" />
     </div>
     <div class="chart-box" ref="WIMTChartBox">
     </div>
@@ -49,13 +48,14 @@ Vue.use(Table)
 Vue.use(TableColumn)
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTable as fasFaTable, faEdit as fasFaEdit, faUndo as fasFaUndo } from '@fortawesome/free-solid-svg-icons'
+import { faTable as fasFaTable, faEdit as fasFaEdit, faUndo as fasFaUndo, faFileDownload as fasFaFileDownload } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as farFaEdit, faTrashAlt as farFaTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt, fasFaUndo)
+library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt, fasFaUndo, fasFaFileDownload)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+import DownloadMenu from './components/DownloadMenu'
 
 import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
@@ -73,6 +73,9 @@ export default {
       AJAX_STATE,
       showTable: false
     }
+  },
+  components: {
+    DownloadMenu
   },
   computed: {
       activityClassList(){
@@ -92,6 +95,10 @@ export default {
             }, {}))
           })
           .value()
+      },
+      downloadDataRows(){
+        return [['序号', '日期'].concat(_.map(this.activityClassList, 'LocalName')).concat(['是否禁用'])]
+          .concat(_.map(this.activityListTable, (d, i) => [i + 1, DateTime.fromISO(d.ActivityRoundDate).toFormat('yyyy-MM-dd')].concat(_.map(this.activityClassList, (ac) => d[ac.Name])).concat([d.Disable])))
       }
   },
   methods: {
@@ -176,7 +183,9 @@ export default {
   cursor: pointer;
   z-index: 99;
 }
-
+.toolbox .toolitem{
+  display: inline-block;
+}
 .toolitem,.opra-icon{
   cursor: pointer;
 }

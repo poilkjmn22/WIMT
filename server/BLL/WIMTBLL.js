@@ -232,7 +232,6 @@ exports.updateActivityRound = function(data, cb) {
       }
       return res
     }, []).join(';')+';'
-    console.log(updateSql)
     connection.query(updateSql, function(error, results, fields) {
         if (error) {
             cb.call(this, {
