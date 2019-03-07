@@ -27,7 +27,7 @@
 import Snap from 'snapsvg';
 import Emitter from '../../js/EmitterMixin.js';
 export default {
-  name: 'AnimateRadioButton',
+  name: 'AnimateRadio',
   props: {
     label: {},
     disabled: Boolean,

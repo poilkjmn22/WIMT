@@ -1,9 +1,9 @@
 import Highcharts from 'highcharts'
-import Exporting from 'highcharts/modules/exporting'
+// import Exporting from 'highcharts/modules/exporting'
 import Annotations from 'highcharts/modules/annotations'
 import Streamgraph from 'highcharts/modules/streamgraph'
 import NoDataToDisplay from 'highcharts/modules/no-data-to-display'
-Exporting(Highcharts)
+// Exporting(Highcharts)
 Annotations(Highcharts)
 Streamgraph(Highcharts)
 NoDataToDisplay(Highcharts)
@@ -15,9 +15,9 @@ import DateTime from 'luxon/src/datetime'
 const SUC = require('../../json/special-unicode-character')
 
 Highcharts.setOptions({
-  lang: {
-    noData: '暂无数据'
-  }
+    lang: {
+        noData: '暂无数据'
+    }
 })
 
 function drawChart(chartBox, {
@@ -128,17 +128,17 @@ function drawChart(chartBox, {
             }
         },
         tooltip: {
-          shared: true,
-          useHTML: true,
-          formatter: function(){
-            var dateStr = DateTime.fromISO(this.x, {
-                locale: 'zh-Hans-CN'
-            }).toFormat('DDD cccc')
-            var pointsStr = _.map(this.points, p => {
-              return `<div><span class="mr-3 FS-12" style="color: ${p.color}">${SUC.fillCircle}</span> ${p.series.name}：<b>${p.y}</b></div>`
-            }).join('')
-            return `<div>${dateStr}<br>${pointsStr}</div>`
-          }
+            shared: true,
+            useHTML: true,
+            formatter: function() {
+                var dateStr = DateTime.fromISO(this.x, {
+                    locale: 'zh-Hans-CN'
+                }).toFormat('DDD cccc')
+                var pointsStr = _.map(this.points, p => {
+                    return `<div><span class="mr-3 FS-12" style="color: ${p.color}">${SUC.fillCircle}</span> ${p.series.name}：<b>${p.y}</b></div>`
+                }).join('')
+                return `<div>${dateStr}<br>${pointsStr}</div>`
+            }
         },
         series,
         exporting: {
@@ -146,7 +146,7 @@ function drawChart(chartBox, {
             sourceHeight: 600
         },
         credits: {
-          enabled: false
+            enabled: false
         }
     });
 }

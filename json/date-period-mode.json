@@ -1,0 +1,10 @@
+[{
+    "name": "day",
+    "title": "日"
+}, {
+    "name": "week",
+    "title": "周"
+}, {
+    "name": "month",
+    "title": "月"
+}]

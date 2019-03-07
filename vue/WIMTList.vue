@@ -6,6 +6,13 @@
     element-loading-background="rgba(0, 0, 0, 0.5)">
     <div class="toolbox absolute">
           <font-awesome-icon @click="onShowTable" class="fa-2x toolitem" :style="{color: showTable ? '#2DD8B1' : ''}" :icon="['fas', 'table']" />
+          <animate-radio-group @change="onChangeDatePeriodMode" class="toolitem" v-model="datePeriodMode">
+            <animate-radio v-for="dpm in DATE_PERIOD_MODE" :label="dpm.name">
+              <!-- <font-awesome-icon v-if="dpm.name === 'day'" :icon="['fas', 'calendar-day']" /> -->
+              <!-- <font-awesome-icon v-else-if="dpm.name === 'week'" :icon="['fas', 'calendar-week']" /> -->
+              <span>{{dpm.title}}</span>
+            </animate-radio>
+          </animate-radio-group>
           <download-menu class="toolitem" :data-rows="downloadDataRows" />
     </div>
     <div class="chart-box" ref="WIMTChartBox">
@@ -48,14 +55,16 @@ Vue.use(Table)
 Vue.use(TableColumn)
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTable as fasFaTable, faEdit as fasFaEdit, faUndo as fasFaUndo, faFileDownload as fasFaFileDownload } from '@fortawesome/free-solid-svg-icons'
+import { faTable as fasFaTable, faEdit as fasFaEdit, faUndo as fasFaUndo, faFileDownload as fasFaFileDownload, faCalendarDay as fasFaCalendarDay, faCalendarWeek as fasFaCalendarWeek } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as farFaEdit, faTrashAlt as farFaTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt, fasFaUndo, fasFaFileDownload)
+library.add(fasFaTable, fasFaEdit, farFaEdit, farFaTrashAlt, fasFaUndo, fasFaFileDownload, fasFaCalendarDay, fasFaCalendarWeek)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import DownloadMenu from './components/DownloadMenu'
+import AnimateRadioGroup from './components/AnimateRadioGroup'
+import AnimateRadio from './components/AnimateRadio'
 
 import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
@@ -65,17 +74,22 @@ import chartHelper from '../js/helper/chartHelper'
 
 const AJAX_STATE = require('../json/ajax-state.json')
 const CHART_LIB = require('../json/chart-lib.json')
+const DATE_PERIOD_MODE = require('../json/date-period-mode.json')
 import * as COLOR from '../js/colors'
 export default {
   data(){
     return {
       getRemoteDataAjaxState: AJAX_STATE.ISNOTASKED,
       AJAX_STATE,
+      DATE_PERIOD_MODE,
+      datePeriodMode: _.get(DATE_PERIOD_MODE, [0, 'name']),
       showTable: false
     }
   },
   components: {
-    DownloadMenu
+    DownloadMenu,
+    AnimateRadioGroup,
+    AnimateRadio
   },
   computed: {
       activityClassList(){
@@ -153,6 +167,9 @@ export default {
             message: res.message
           })
         })
+    },
+    onChangeDatePeriodMode(dpm){
+      console.log(dpm)
     }
   },
   mounted(){
@@ -185,6 +202,8 @@ export default {
 }
 .toolbox .toolitem{
   display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 .toolitem,.opra-icon{
   cursor: pointer;
