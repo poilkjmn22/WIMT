@@ -18,6 +18,15 @@ const happyThreadPool = HappyPack.ThreadPool({
     size: os.cpus().length
 });
 
+//获取本机的IP地址
+function getLocalIPv4(networkName = '本地连接'){
+  var network = os.networkInterfaces();
+  return _.chain(network[networkName])
+    .find(n => /((?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d))/.test(n.address))
+    .get('address')
+    .value()
+}
+
 const PUBLIC_PATH = '/dist/';
 
 const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
@@ -147,8 +156,7 @@ module.exports = {
         compress: false,
         port: 8090,
         hot: true,
-        // host: '192.168.20.16',
-        host: '192.168.10.147',
+        host: getLocalIPv4(),
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'
