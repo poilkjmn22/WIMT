@@ -156,7 +156,7 @@ module.exports = {
         compress: false,
         port: 8090,
         hot: true,
-        host: getLocalIPv4(),
+        host: getLocalIPv4('WLAN'),
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'
