@@ -2,12 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import chartHelper from '../helper/chartHelper'
 
 import axios from 'axios'
-import _ from 'lodash'
-import DateTime from 'luxon/src/datetime'
-const AJAX_STATE = require('../../json/ajax-state')
 
 const store = new Vuex.Store({
     // 全局变量
@@ -64,85 +60,6 @@ const store = new Vuex.Store({
                         reject(e)
                     })
               }
-            })
-        },
-        async getRDAllActivityListAndActivityClassList({
-            dispatch,
-            state,
-            commit
-        }, vmWIMTList) {
-            vmWIMTList.getRemoteDataAjaxState = AJAX_STATE.PENDDING
-            await dispatch('getRDActivityList', vmWIMTList)
-            await dispatch('getRDActivityClassList', vmWIMTList)
-            vmWIMTList.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
-            let {
-                activityList,
-                activityClassList
-            } = state
-            chartHelper.drawChart('highcharts', vmWIMTList.$refs.WIMTChartBox, {
-                activityList: _.filter(activityList, a => a.Disable == 0),
-                activityClassList
-            })
-            commit('shouldUpdateActivityList', false)
-        },
-        deleteActivity({
-            dispatch
-        }, {
-            row,
-            vmWIMTList
-        }) {
-            return new Promise((resolve, reject) => {
-                axios.request({
-                        method: 'put',
-                        url: '/deleteActivity',
-                        data: {
-                            ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
-                        }
-                    })
-                    .then(res => {
-                        if (res.data.code === 0) {
-                            dispatch('getRDAllActivityListAndActivityClassList', vmWIMTList)
-                            resolve(res.data)
-                        } else {
-                            reject(res.data)
-                        }
-                    })
-                    .catch(e => {
-                        reject({
-                            code: -1,
-                            message: '未知错误！'
-                        })
-                    })
-            })
-        },
-        restoreActivity({
-            dispatch
-        }, {
-            row,
-            vmWIMTList
-        }) {
-            return new Promise((resolve, reject) => {
-                axios.request({
-                        method: 'put',
-                        url: '/restoreActivity',
-                        data: {
-                            ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
-                        }
-                    })
-                    .then(res => {
-                        if (res.data.code === 0) {
-                            dispatch('getRDAllActivityListAndActivityClassList', vmWIMTList)
-                            resolve(res.data)
-                        } else {
-                            reject(res.data)
-                        }
-                    })
-                    .catch(e => {
-                        reject({
-                            code: -1,
-                            message: '未知错误！'
-                        })
-                    })
             })
         },
         getRDActivityRound({}, {ActivityRoundDate}){

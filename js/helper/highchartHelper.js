@@ -22,21 +22,61 @@ Highcharts.setOptions({
 
 function drawChart(chartBox, {
     activityList,
-    activityClassList
+    activityClassList,
+    datePeriodMode = 'day'
 }) {
     var colors = Highcharts.getOptions().colors;
+    var groupByDatePeriodMode = function(DateISO, datePeriodMode){
+      var x = null
+      switch (datePeriodMode) {
+        case 'day':
+          x = DateISO
+          break;
+        case 'week':
+          x = DateTime.fromISO(DateISO).weeksInWeekYear
+        case 'month':
+          x = DateTime.fromISO(DateISO).month
+        default:
+
+      }
+      return x
+    }
     var transformSeriesData = function({
         activityList,
-        activityClassList
+        activityClassList,
+        datePeriodMode
     }) {
         var series = _.chain(activityList)
             .groupBy('Name')
             .map((gv, gk) => ({
                 name: gk,
-                data: _.map(gv, v => wimt.utils.parseDuration(v.Duration))
+                data: _.chain(gv)
+                  .groupBy(v => groupByDatePeriodMode(v.ActivityRoundDate, datePeriodMode))
+                  .map((v, k) => _.sumBy(v, vv => wimt.utils.parseDuration(vv.Duration)))
+                  .value()
             }))
             .value()
-        var categories = _.chain(activityList).map('ActivityRoundDate').uniq().value()
+
+        var categories = _.chain(activityList)
+          .map('ActivityRoundDate')
+          .uniq()
+          .groupBy(v => groupByDatePeriodMode(v, datePeriodMode))
+          .map((v,k) => {
+            if(v.length > 1){
+              return `${DateTime.fromISO(v[0], {
+                  locale: 'zh-Hans-CN'
+              }).toFormat('yyyy-MM-dd cccc')}~${DateTime.fromISO(v[v.length - 1], {
+                  locale: 'zh-Hans-CN'
+              }).toFormat('yyyy-MM-dd cccc')}`
+            }else {
+              return DateTime.fromISO(v[0], {
+                  locale: 'zh-Hans-CN'
+              }).toFormat('yyyy-MM-dd cccc')
+            }
+          })
+          .value()
+          console.dir(series)
+          console.dir(categories)
         return {
             series,
             categories
@@ -47,7 +87,8 @@ function drawChart(chartBox, {
         categories
     } = transformSeriesData({
         activityList,
-        activityClassList
+        activityClassList,
+        datePeriodMode
     })
     Highcharts.chart({
         chart: {
@@ -72,10 +113,10 @@ function drawChart(chartBox, {
                 reserveSpace: false,
                 rotation: 270,
                 formatter: function() {
-                    var dt = DateTime.fromISO(this.value, {
-                        locale: 'zh-Hans-CN'
-                    })
-                    return `<div><span>${dt.toFormat('yyyy-MM-dd')}</span><br><span>${dt.toFormat('cccc')}</span></div>`
+                    if(this.value.split('~').length > 1){
+                      return `<div><span>${this.value.split('~')[0]}</span><br><span>${this.value.split('~')[1]}</span></div>`
+                    }
+                    return this.value
                 }
             },
             lineWidth: 0,
@@ -131,9 +172,7 @@ function drawChart(chartBox, {
             shared: true,
             useHTML: true,
             formatter: function() {
-                var dateStr = DateTime.fromISO(this.x, {
-                    locale: 'zh-Hans-CN'
-                }).toFormat('DDD cccc')
+                var dateStr = this.x
                 var pointsStr = _.map(this.points, p => {
                     return `<div><span class="mr-3 FS-12" style="color: ${p.color}">${SUC.fillCircle}</span> ${p.series.name}：<b>${p.y}</b></div>`
                 }).join('')

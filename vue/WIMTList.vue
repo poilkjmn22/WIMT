@@ -116,6 +116,21 @@ export default {
       }
   },
   methods: {
+    updateData(){
+      this.getRemoteDataAjaxState = AJAX_STATE.PENDDING
+      Promise.all([this.$store.dispatch('getRDActivityList'), this.$store.dispatch('getRDActivityClassList')])
+        .then(results => {
+          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
+          chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
+              activityList: _.filter(results[0], a => a.Disable == 0),
+              activityClassList: results[1]
+          })
+          this.$store.commit('shouldUpdateActivityList', false)
+        })
+        .catch(reason => {
+          this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
+        })
+    },
     onShowTable(){
       this.showTable = !this.showTable;
     },
@@ -139,42 +154,78 @@ export default {
       })
     },
     onDeleteActivity(row){
-      this.$store.dispatch('deleteActivity', {row, vmWIMTList: this})
-        .then((res) => {
-          Message({
-            type: 'success',
-            message: '删除成功！'
+      axios.request({
+              method: 'put',
+              url: '/deleteActivity',
+              data: {
+                  ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
+              }
           })
-        })
-        .catch((res) => {
-          Message({
-            type: 'error',
-            message: res.message
+          .then(res => {
+              if (res.data.code === 0) {
+                Message({
+                  type: 'success',
+                  message: '删除成功！'
+                })
+                this.updateData()
+              } else {
+                Message({
+                  type: 'error',
+                  message: res.data.message
+                })
+              }
           })
-        })
+          .catch(e => {
+            Message({
+              type: 'error',
+              message: '未知错误！'
+            })
+          })
     },
     onRestoreActivity(row){
-      this.$store.dispatch('restoreActivity', {row, vmWIMTList: this})
-        .then((res) => {
-          Message({
-            type: 'success',
-            message: '恢复成功！'
+      axios.request({
+              method: 'put',
+              url: '/restoreActivity',
+              data: {
+                  ActivityRoundDate: DateTime.fromISO(row.ActivityRoundDate).toFormat('yyyy-MM-dd')
+              }
           })
-        })
-        .catch((res) => {
-          Message({
-            type: 'error',
-            message: res.message
+          .then(res => {
+              if (res.data.code === 0) {
+                  Message({
+                    type: 'success',
+                    message: '恢复成功！'
+                  })
+                  this.updateData()
+              } else {
+                Message({
+                  type: 'error',
+                  message: res.data.message
+                })
+              }
           })
-        })
+          .catch(e => {
+            Message({
+              type: 'error',
+              message: '未知错误！'
+            })
+          })
     },
     onChangeDatePeriodMode(dpm){
-      console.log(dpm)
+      let {
+          activityList,
+          activityClassList
+      } = this.$store.state
+      chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
+          activityList,
+          activityClassList,
+          datePeriodMode: dpm
+      })
     }
   },
   mounted(){
     if (this.$store.state.shouldUpdateActivityList === true) {//状态被更新了
-        this.$store.dispatch('getRDAllActivityListAndActivityClassList', this)
+      this.updateData()
     }else{//状态被缓存了
       let {
           activityList,
