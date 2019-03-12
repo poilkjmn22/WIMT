@@ -13,6 +13,7 @@ import wimt from '../utils'
 import DateTime from 'luxon/src/datetime'
 
 const SUC = require('../../json/special-unicode-character')
+const DATE_PERIOD_MODE = require('../../json/date-period-mode')
 
 Highcharts.setOptions({
     lang: {
@@ -31,15 +32,23 @@ function drawChart(chartBox, {
       switch (datePeriodMode) {
         case 'day':
           x = DateISO
-          break;
+          break
         case 'week':
-          x = DateTime.fromISO(DateISO).weeksInWeekYear
+          x = DateTime.fromISO(DateISO).weekNumber
+          break
         case 'month':
           x = DateTime.fromISO(DateISO).month
+          break
         default:
 
       }
       return x
+    }
+    var getDatePeriodTitle = function(datePeriodMode){
+      return _.chain(DATE_PERIOD_MODE)
+        .find(['name', datePeriodMode])
+        .get('title')
+        .value()
     }
     var transformSeriesData = function({
         activityList,
@@ -67,7 +76,7 @@ function drawChart(chartBox, {
                   locale: 'zh-Hans-CN'
               }).toFormat('yyyy-MM-dd cccc')}~${DateTime.fromISO(v[v.length - 1], {
                   locale: 'zh-Hans-CN'
-              }).toFormat('yyyy-MM-dd cccc')}`
+              }).toFormat('yyyy-MM-dd cccc')}[${k}${getDatePeriodTitle(datePeriodMode)}]`
             }else {
               return DateTime.fromISO(v[0], {
                   locale: 'zh-Hans-CN'
@@ -75,8 +84,6 @@ function drawChart(chartBox, {
             }
           })
           .value()
-          console.dir(series)
-          console.dir(categories)
         return {
             series,
             categories

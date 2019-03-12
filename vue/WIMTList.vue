@@ -82,7 +82,7 @@ export default {
       getRemoteDataAjaxState: AJAX_STATE.ISNOTASKED,
       AJAX_STATE,
       DATE_PERIOD_MODE,
-      datePeriodMode: _.get(DATE_PERIOD_MODE, [0, 'name']),
+      datePeriodMode: this.$store.state.activeDatePeriodMode,
       showTable: false
     }
   },
@@ -94,6 +94,9 @@ export default {
   computed: {
       activityClassList(){
         return this.$store.state.activityClassList
+      },
+      activeDatePeriodMode(){
+        return this.$store.state.activeDatePeriodMode
       },
       activityListTable(){
         let {activityList, activityClassList} = this.$store.state
@@ -123,7 +126,8 @@ export default {
           this.getRemoteDataAjaxState = AJAX_STATE.COMPLETE
           chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
               activityList: _.filter(results[0], a => a.Disable == 0),
-              activityClassList: results[1]
+              activityClassList: results[1],
+              datePeriodMode: this.activeDatePeriodMode
           })
           this.$store.commit('shouldUpdateActivityList', false)
         })
@@ -216,10 +220,13 @@ export default {
           activityList,
           activityClassList
       } = this.$store.state
-      chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
-          activityList,
-          activityClassList,
-          datePeriodMode: dpm
+      this.$store.commit('activeDatePeriodMode', dpm)
+      this.$nextTick(() => {
+        chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
+            activityList,
+            activityClassList,
+            datePeriodMode: dpm
+        })
       })
     }
   },
@@ -233,7 +240,8 @@ export default {
       } = this.$store.state
       chartHelper.drawChart('highcharts', this.$refs.WIMTChartBox, {
           activityList,
-          activityClassList
+          activityClassList,
+          datePeriodMode: this.activeDatePeriodMode
       })
     }
   }
