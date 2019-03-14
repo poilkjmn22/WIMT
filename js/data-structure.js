@@ -1,13 +1,19 @@
 var DATA_STRUCTURE = {}
 
-function isArr(val){
-  return Object.prototype.toString.call(val) === '[object Array]'
+function isArr(val) {
+    return Object.prototype.toString.call(val) === '[object Array]'
 }
-function isObj(val){
-  return Object.prototype.toString.call(val) === '[object Object]'
+
+function isObj(val) {
+    return Object.prototype.toString.call(val) === '[object Object]'
 }
-function isFn(val){
-  return Object.prototype.toString.call(val) === '[object Function]'
+
+function isFn(val) {
+    return Object.prototype.toString.call(val) === '[object Function]'
+}
+
+function isStr(val) {
+    return Object.prototype.toString.call(val) === '[object String]'
 }
 
 function deepClone(obj) {
@@ -213,6 +219,7 @@ class Tree {
             res = tree;
             return res;
         };
+
         function lookUp(tree, cb) {
             (tree.children || []).forEach(function(node) {
                 if (cb.call(this, node) === true) {
@@ -252,59 +259,60 @@ class Tree {
         }
         return res
     }
-    static traverseBFS(tree, cb){
-      if (isArr(tree)) {
-          tree = {
-              children: tree
-          };
-      }
-      if (!isFn(cb)) {
-          return;
-      }
-      cb.call(this, tree, tree)//别忘记了根节点也要处理
-      var processing = new Queue();
-      processing.enqueueMany(tree.children);
-      var processed = processing.dequeue();
-      while (processed) {
-          cb.call(this, processed, tree)
-          processing.enqueueMany(processed.children)
-          processed = processing.dequeue()
-      }
-    }
-    static traverseDFS(tree, cb){
-      if (isArr(tree)) {
-          tree = {
-              children: tree
-          };
-      }
-      if (!isFn(cb)) {
-          return;
-      }
-      cb.call(this, tree, tree)//别忘记了根节点也要处理
-      var processing = new Stack();
-      processing.pushMany(tree.children);
-      var processed = processing.pop();
-      while (processed) {
-          cb.call(this, processed, tree)
-          processing.pushMany(processed.children)
-          processed = processing.pop()
-      }
-    }
-    static traverse(tree, callback){
-      if (isArr(tree)) {
-          tree = {
-              children: tree
-          };
-      }
-      function innerLoop(tree, callback, parent){
-        if(isFn(callback)){
-          callback.call(this, tree, parent)
+    static traverseBFS(tree, cb) {
+        if (isArr(tree)) {
+            tree = {
+                children: tree
+            };
         }
-        (tree.children || []).forEach(function(c){
-          innerLoop(c, callback, tree)
-        })
-      }
-      innerLoop(tree, callback)
+        if (!isFn(cb)) {
+            return;
+        }
+        cb.call(this, tree, tree) //别忘记了根节点也要处理
+        var processing = new Queue();
+        processing.enqueueMany(tree.children);
+        var processed = processing.dequeue();
+        while (processed) {
+            cb.call(this, processed, tree)
+            processing.enqueueMany(processed.children)
+            processed = processing.dequeue()
+        }
+    }
+    static traverseDFS(tree, cb) {
+        if (isArr(tree)) {
+            tree = {
+                children: tree
+            };
+        }
+        if (!isFn(cb)) {
+            return;
+        }
+        cb.call(this, tree, tree) //别忘记了根节点也要处理
+        var processing = new Stack();
+        processing.pushMany(tree.children);
+        var processed = processing.pop();
+        while (processed) {
+            cb.call(this, processed, tree)
+            processing.pushMany(processed.children)
+            processed = processing.pop()
+        }
+    }
+    static traverse(tree, callback) {
+        if (isArr(tree)) {
+            tree = {
+                children: tree
+            };
+        }
+
+        function innerLoop(tree, callback, parent) {
+            if (isFn(callback)) {
+                callback.call(this, tree, parent)
+            }
+            (tree.children || []).forEach(function(c) {
+                innerLoop(c, callback, tree)
+            })
+        }
+        innerLoop(tree, callback)
     }
     /**
      * 将一个数组转换为层级结构的数据对象
@@ -315,59 +323,101 @@ class Tree {
      * @returns {Object} 层级对象
      */
     static hierarchyList(data, hierarchy) {
-      var root = {
-      }
-      if(isObj(data)){
-        var dataToArray = []
-        for (var k in data) {
-          if (data.hasOwnProperty(k)) {
-            data[k].key = k
-            dataToArray.push(data[k])
-          }
-        }
-        data = dataToArray
-      }
-      if(!isArr(data) || !isArr(hierarchy)){
-        return root;
-      }
-      function generateRoot(root, d, hierarchy){
-        var isTopRoot = root.level === undefined;
-        if(!isArr(root.children)){
-          root.children = []
-        }
-        if(hierarchy.length === 0){
-          root.children.push(d)
-          return
-        }
-        var currHierarchy = hierarchy[0]
-        var nextRoot = null;
-        if(!isTopRoot){
-          nextRoot = root.children.find(function(rc){
-            return rc.levelName === d[currHierarchy]
-          })
-          if(!nextRoot){
-            nextRoot = {
-              levelName: d[currHierarchy],
-              level: hierarchy[1]
+        var root = {}
+        if (isObj(data)) {
+            var dataToArray = []
+            for (var k in data) {
+                if (data.hasOwnProperty(k)) {
+                    data[k].key = k
+                    dataToArray.push(data[k])
+                }
             }
-            root.children.push(nextRoot)
-          }
-        }else{
-          nextRoot = {
-            levelName: d[currHierarchy],
-            level: hierarchy[1]
-          }
-          root.level = currHierarchy
-          root.children.push(nextRoot)
+            data = dataToArray
+        }
+        if (!isArr(data) || !isArr(hierarchy)) {
+            return root;
         }
 
-        generateRoot(nextRoot, d, hierarchy.slice(1))
-      }
-      data.forEach(function(d){
-        generateRoot(root, d, hierarchy)
-      })
+        function generateRoot(root, d, hierarchy) {
+            var isTopRoot = root.level === undefined;
+            if (!isArr(root.children)) {
+                root.children = []
+            }
+            if (hierarchy.length === 0) {
+                root.children.push(d)
+                return
+            }
+            var currHierarchy = hierarchy[0]
+            var nextRoot = null;
+            if (!isTopRoot) {
+                nextRoot = root.children.find(function(rc) {
+                    return rc.levelName === d[currHierarchy]
+                })
+                if (!nextRoot) {
+                    nextRoot = {
+                        levelName: d[currHierarchy],
+                        level: hierarchy[1]
+                    }
+                    root.children.push(nextRoot)
+                }
+            } else {
+                nextRoot = {
+                    levelName: d[currHierarchy],
+                    level: hierarchy[1]
+                }
+                root.level = currHierarchy
+                root.children.push(nextRoot)
+            }
 
-      return root;
+            generateRoot(nextRoot, d, hierarchy.slice(1))
+        }
+        data.forEach(function(d) {
+            generateRoot(root, d, hierarchy)
+        })
+
+        return root;
+    }
+    static parseJSON(jsonObj) {
+        if(isStr(jsonObj)){
+          jsonObj = JSON.parse(jsonObj)
+        }
+        var jsonTree = {
+            valueType: Object.prototype.toString.call(jsonObj),
+            isCollapsed: false
+        }
+
+        function walkObj(obj, parent) {
+            if (!parent.children) {
+                parent.children = []
+            }
+            if (isObj(obj)) {
+                for (var key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        let child = {
+                            key: key,
+                            valueType: Object.prototype.toString.call(obj[key]),
+                            isCollapsed: false
+                        }
+                        parent.children.push(child)
+                        walkObj(obj[key], child)
+                    }
+                }
+            } else if (isArr(obj)) {
+                for (var variable of obj) {
+                    let child = {
+                        valueType: Object.prototype.toString.call(variable),
+                        isCollapsed: false
+                    }
+                    parent.children.push(child)
+                    walkObj(variable, child)
+                }
+            } else {
+                parent.value = obj
+                parent.isLeaf = true
+            }
+        }
+        walkObj(jsonObj, jsonTree)
+        return jsonTree
     }
 }
 

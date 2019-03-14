@@ -10,7 +10,7 @@ exports.getActivityList = function(cb) {
 
     connection.connect();
 
-    connection.query('SELECT * from activity a left join activityclass ac on a.activityclassid = ac.id', function(error, results, fields) {
+    connection.query('SELECT * from activity a left join activityclass ac on a.activityclassid = ac.id order by a.activityrounddate asc', function(error, results, fields) {
         if (error) {
             cb.call(this, {
                 code: error.errno,

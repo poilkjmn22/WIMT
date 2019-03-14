@@ -6,6 +6,7 @@
     element-loading-background="rgba(0, 0, 0, 0.5)">
     <div class="toolbox absolute">
           <font-awesome-icon @click="onShowTable" class="fa-2x toolitem" :style="{color: showTable ? '#2DD8B1' : ''}" :icon="['fas', 'table']" />
+          <span @click="onShowJSON" :class="['toolitem', 'text-button', showJSON && 'is-active' || '']">JSON</span>
           <animate-radio-group @change="onChangeDatePeriodMode" class="toolitem" v-model="datePeriodMode">
             <animate-radio v-for="dpm in DATE_PERIOD_MODE" :label="dpm.name">
               <!-- <font-awesome-icon v-if="dpm.name === 'day'" :icon="['fas', 'calendar-day']" /> -->
@@ -15,7 +16,7 @@
           </animate-radio-group>
           <download-menu class="toolitem" :data-rows="downloadDataRows" />
     </div>
-    <div class="chart-box" ref="WIMTChartBox">
+    <div class="chart-box mb-10" ref="WIMTChartBox">
     </div>
     <div v-if="showTable" class="data-table-box mt-10">
       <el-table border :data="activityListTable">
@@ -43,6 +44,7 @@
         </el-table-column>
       </el-table>
     </div>
+    <json-viewer v-if="showJSON" :json="activityListTable"></json-viewer>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 import DownloadMenu from './components/DownloadMenu'
 import AnimateRadioGroup from './components/AnimateRadioGroup'
 import AnimateRadio from './components/AnimateRadio'
+import JsonViewer from './components/JsonViewer'
 
 import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
@@ -83,13 +86,15 @@ export default {
       AJAX_STATE,
       DATE_PERIOD_MODE,
       datePeriodMode: this.$store.state.activeDatePeriodMode,
-      showTable: false
+      showTable: false,
+      showJSON: false
     }
   },
   components: {
     DownloadMenu,
     AnimateRadioGroup,
-    AnimateRadio
+    AnimateRadio,
+    JsonViewer
   },
   computed: {
       activityClassList(){
@@ -136,7 +141,12 @@ export default {
         })
     },
     onShowTable(){
-      this.showTable = !this.showTable;
+      this.showTable = !this.showTable
+      this.showJSON = false
+    },
+    onShowJSON(){
+      this.showJSON = !this.showJSON
+      this.showTable = false
     },
     formatColumn(row, cell, cellValue){
       var res = ''

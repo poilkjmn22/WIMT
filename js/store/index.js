@@ -11,7 +11,7 @@ const store = new Vuex.Store({
         shouldUpdateActivityList: true,
         activityList: [],
         activityClassList: [],
-        activeDatePeriodMode: 'week'
+        activeDatePeriodMode: 'day'
     },
     // 修改全局变量必须通过mutations中的方法
     // mutations只能采用同步方法
