@@ -314,6 +314,30 @@ class Tree {
         }
         innerLoop(tree, callback)
     }
+    static every(tree, cb) {
+        if (isArr(tree)) {
+            tree = {
+                children: tree
+            };
+        }
+        if (!isFn(cb)) {
+            return false;
+        }
+        if (!cb.call(this, tree, tree)) {
+            return false;
+        } //别忘记了根节点也要处理
+        var processing = new Stack();
+        processing.pushMany(tree.children);
+        var processed = processing.pop();
+        while (processed) {
+            if (!cb.call(this, processed, tree)) {
+                return false;
+            }
+            processing.pushMany(processed.children)
+            processed = processing.pop()
+        }
+        return true
+    }
     /**
      * 将一个数组转换为层级结构的数据对象
      *
@@ -378,8 +402,8 @@ class Tree {
         return root;
     }
     static parseJSON(jsonObj) {
-        if(isStr(jsonObj)){
-          jsonObj = JSON.parse(jsonObj)
+        if (isStr(jsonObj)) {
+            jsonObj = JSON.parse(jsonObj)
         }
         var jsonTree = {
             valueType: Object.prototype.toString.call(jsonObj),

@@ -33,6 +33,7 @@ export default {
   },
   computed: {
     jsonTree(){
+      // return Tree.parseJSON('{"course_id":"2019031615240100000007","room_id":4000,"create_uid":14641934,"create_phone":"15221409730","createname":"石头1","roletype":0,"host_phone":"15221409730","host_uid":14641934,"hostname":"石头1","course_time":1552723200,"duration":3600,"course_name":"rre","limit":0,"classmode":1,"desc":"","flag":0,"stulist":null,"mainmate":"","matelist":null,"invitationCode":"886925","class":{"Id":74,"Name":"test001","Bulletin":"","CreatorUid":14641934,"Sponsor":{"uid":30000071,"birthdate":0,"channel":"","createtime":0,"email":"","phoneno":"","userkind":0,"sex":0,"photourl":"","nickname":""},"CreateTime":1551777046167,"UpdateTime":1551777046167,"roletype":0,"State":0,"MemberList":[{"Id":156,"User":{"uid":5501,"birthdate":0,"channel":"","createtime":0,"email":"","phoneno":"","userkind":0,"sex":0,"photourl":"","nickname":""},"Class":{"Id":74,"Name":"","Bulletin":"","CreatorUid":0,"Sponsor":null,"CreateTime":0,"UpdateTime":0,"roletype":0,"State":0,"MemberList":null,"CourseList":null}},{"Id":157,"User":{"uid":5502,"birthdate":0,"channel":"","createtime":0,"email":"","phoneno":"","userkind":0,"sex":0,"photourl":"","nickname":""},"Class":{"Id":74,"Name":"","Bulletin":"","CreatorUid":0,"Sponsor":null,"CreateTime":0,"UpdateTime":0,"roletype":0,"State":0,"MemberList":null,"CourseList":null}},{"Id":158,"User":{"uid":5500,"birthdate":0,"channel":"","createtime":0,"email":"","phoneno":"","userkind":0,"sex":0,"photourl":"","nickname":""},"Class":{"Id":74,"Name":"","Bulletin":"","CreatorUid":0,"Sponsor":null,"CreateTime":0,"UpdateTime":0,"roletype":0,"State":0,"MemberList":null,"CourseList":null}}],"CourseList":null},"_":0}')
       return Tree.parseJSON(this.json)
     }
   },
@@ -58,14 +59,17 @@ export default {
           innerHTML: '折叠'
         },
         on: {
-          click(){
+          click(){//全折叠&展开
             vm.isAllCollapsed = !vm.isAllCollapsed
-            Tree.traverseDFS(vm.jsonTree, treenode => {
+            Tree.traverse(vm.jsonTree, (treenode, parentnode) => {
               if(!treenode.isLeaf){
                 treenode.isCollapsed = vm.isAllCollapsed
               }
-            })
 
+              if(parentnode){
+                treenode.isParentCollapsed = vm.isAllCollapsed
+              }
+            })
             vm.$forceUpdate()
           }
         }
@@ -84,9 +88,9 @@ export default {
         }))
       }else{
         Tree.traverse(this.jsonTree, (treenode, parentnode) => {
-            // if(parentnode && parentnode.isCollapsed){
-            //   return
-            // }
+            if(parentnode && parentnode.isCollapsed || treenode.isParentCollapsed){
+              return
+            }
             treenode.VNode = createVNodeOfTreeNode(treenode, parentnode)
             if(!parentnode){
               return
@@ -114,10 +118,7 @@ export default {
             class: 'el-icon-circle-plus-outline',
             on: {
               click: function(e){
-                treenode.isCollapsed = false
-                treenode.children = treenode.childrenReplace
-                treenode.childrenReplace = null
-                vm.$forceUpdate()
+                onToggleCollapse(e, treenode)
               }
             }
           }), h('span', {
@@ -133,7 +134,7 @@ export default {
               color: getColorOfValueType(treenode.valueType)
             },
             domProps: {
-              innerHTML: treenode.valueType === '[object Object]' ? '...' : treenode.childrenReplace.length
+              innerHTML: treenode.valueType === '[object Object]' ? '...' : treenode.children.length
             }
           }), h('span', {
             domProps: {
@@ -172,10 +173,7 @@ export default {
             class: 'el-icon-remove-outline',
             on: {
               click: function(e){
-                treenode.isCollapsed = true
-                treenode.childrenReplace = treenode.children
-                treenode.children = null
-                vm.$forceUpdate()
+                onToggleCollapse(e, treenode)
               }
             }
           }), h('span', {
@@ -196,6 +194,20 @@ export default {
         }
       }
 
+      function onToggleCollapse(e, treenode){
+        treenode.isCollapsed = !treenode.isCollapsed
+        Tree.traverse(treenode, (node, parent) => {
+          if(parent){
+            node.isParentCollapsed = treenode.isCollapsed
+          }
+        })
+
+        vm.isAllCollapsed = Tree.every(vm.jsonTree, node => {
+          return node.isCollapsed || node.isLeaf
+        })
+        vm.$forceUpdate()
+      }
+
       return wrapperVNode
   }
 }
@@ -206,7 +218,7 @@ export default {
   color: #2f7ed8;
 }
 
-.json-parent-node > .key, .json-parent-node > [class*="-wrapper"], .json-parent-node > .comma{
+.json-parent-node > .key, .json-parent-node > [class*="-wrapper"], .json-parent-node > .comma, .json-parent-node > .collapsed-info{
   display: inline-block;
 }
 .json-parent-node > .json-parent-node, .json-parent-node > .json-leaf-node{
