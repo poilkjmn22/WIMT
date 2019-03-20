@@ -4,6 +4,7 @@
     <el-submenu index="2">
       <template slot="title"><i class="el-icon-setting"></i>设置</template>
       <el-menu-item :index="parseNavMenuItemIndex('addActivity')" :route="{name: 'addActivity'}">添加活动</el-menu-item>
+      <el-menu-item :index="parseNavMenuItemIndex('addActivitySchedule')" :route="{name: 'addActivitySchedule'}">添加活动(日程表)</el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
