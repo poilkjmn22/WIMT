@@ -74,8 +74,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 // loader: 'babel-loader',
-                use: 'happypack/loader?id=happyBabel',
-                exclude: /node_modules/
+                use: 'happypack/loader?id=happyBabel'
             },
             {
                 test: /\.vue$/,
@@ -157,7 +156,7 @@ module.exports = {
         // index: './dist/index1.html',
         compress: false,
         port: 8090,
-        hot: true,
+        hot: false,
         host: getLocalIPv4(ipconfig.networkName),
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'

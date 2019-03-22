@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 21/03/2019 18:52:45
+ Date: 22/03/2019 18:38:08
 */
 
 SET NAMES utf8mb4;
@@ -277,6 +277,14 @@ INSERT INTO `activity` VALUES (254, 5, '2019-03-20', '0', 0);
 INSERT INTO `activity` VALUES (255, 6, '2019-03-20', '0.5', 0);
 INSERT INTO `activity` VALUES (256, 7, '2019-03-20', '8', 0);
 INSERT INTO `activity` VALUES (257, 8, '2019-03-20', '0.5', 0);
+INSERT INTO `activity` VALUES (258, 1, '2019-03-21', '8', 0);
+INSERT INTO `activity` VALUES (259, 2, '2019-03-21', '4.5', 0);
+INSERT INTO `activity` VALUES (260, 3, '2019-03-21', '3', 0);
+INSERT INTO `activity` VALUES (261, 4, '2019-03-21', '1.5', 0);
+INSERT INTO `activity` VALUES (262, 5, '2019-03-21', '0', 0);
+INSERT INTO `activity` VALUES (263, 6, '2019-03-21', '0', 0);
+INSERT INTO `activity` VALUES (264, 7, '2019-03-21', '7', 0);
+INSERT INTO `activity` VALUES (265, 8, '2019-03-21', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -368,5 +376,6 @@ INSERT INTO `activityround` VALUES ('2019-03-17');
 INSERT INTO `activityround` VALUES ('2019-03-18');
 INSERT INTO `activityround` VALUES ('2019-03-19');
 INSERT INTO `activityround` VALUES ('2019-03-20');
+INSERT INTO `activityround` VALUES ('2019-03-21');
 
 SET FOREIGN_KEY_CHECKS = 1;

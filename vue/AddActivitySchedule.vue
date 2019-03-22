@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="">
-    <schedule-calendar />
+    <div class="" ref="fullCalendarBox">
+      myCalendar   dsfdsfsf
+    </div>
   </div>
 </template>
 

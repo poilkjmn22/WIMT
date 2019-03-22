@@ -1,6 +1,8 @@
 {
     "presets": [
-        "env",
+        ["env", {
+            "modules": false
+        }],
         ["es2015", {
             "modules": false,
             "targets": {
@@ -13,6 +15,7 @@
             "component",
             {
                 "libraryName": "element-ui",
+                "libraryDirectory": "es",
                 "styleLibraryName": "~theme"
             }
         ]
