@@ -60,8 +60,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 // loader: 'babel-loader',
-                use: 'happypack/loader?id=happyBabel',
-                exclude: /node_modules/
+                use: 'happypack/loader?id=happyBabel'
             },
             {
                 test: /\.vue$/,
@@ -144,7 +143,7 @@ module.exports = {
     ],
 
     resolve: {
-        mainFields: ['main'],
+        mainFields: ['jsnext:main', 'modules', 'main'],
         alias: {
             Components: './components'
         },
