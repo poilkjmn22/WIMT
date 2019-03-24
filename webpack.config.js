@@ -108,7 +108,7 @@ module.exports = {
             id: 'happyBabel',
             //如何处理  用法和loader 的配置一样
             loaders: [{
-                loader: 'babel-loader?cacheDirectory=true',
+                loader: 'babel-loader',
             }],
             //共享进程池
             threadPool: happyThreadPool,
@@ -137,7 +137,7 @@ module.exports = {
     ],
 
     resolve: {
-        mainFields: ['main'],
+        mainFields: ['jsnext:main', 'modules', 'main'],
         alias: {
             Components: './components'
         },
@@ -155,14 +155,14 @@ module.exports = {
         publicPath: PUBLIC_PATH,
         // index: './dist/index1.html',
         compress: false,
-        port: 8090,
-        hot: false,
+        port: 8080,
+        hot: true,
         host: getLocalIPv4(ipconfig.networkName),
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'
         },
-        setup: function(app, server) {
+        before: function(app, server) {
             app.use(bodyParser.json())
             app.use(bodyParser.urlencoded({
                 extended: true

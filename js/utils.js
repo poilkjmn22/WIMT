@@ -154,6 +154,9 @@ utils.parseDuration = function(duration){
   if(typeof duration != 'string'){
     return 0
   }
+  if(duration.split('~').length === 2){
+    return ((new Date(duration.split('~')[1]).getTime() - new Date(duration.split('~')[0]).getTime()) / 1000 / 3600).toFixed(1)
+  }
   var m = duration.match(/(\d+\.?\d*)h?/)
   return m && parseFloat(m[1]) || 0
 }
