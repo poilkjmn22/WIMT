@@ -1,0 +1,10 @@
+$color: #AAE9F3;
+$color2: #A9D8F9;
+
+.color{
+  color: lighten($color, 12%);
+}
+
+.color2{
+  color: lighten($color2, 12%);
+}
