@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 04/04/2019 17:12:01
+ Date: 07/04/2019 22:16:12
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 370 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 402 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -389,6 +389,38 @@ INSERT INTO `activity` VALUES (366, 5, '2019-04-03', '0', 0);
 INSERT INTO `activity` VALUES (367, 6, '2019-04-03', '2.5', 0);
 INSERT INTO `activity` VALUES (368, 7, '2019-04-03', '11', 0);
 INSERT INTO `activity` VALUES (369, 8, '2019-04-03', '0', 0);
+INSERT INTO `activity` VALUES (370, 1, '2019-04-04', '8', 0);
+INSERT INTO `activity` VALUES (371, 2, '2019-04-04', '3', 0);
+INSERT INTO `activity` VALUES (372, 3, '2019-04-04', '3', 0);
+INSERT INTO `activity` VALUES (373, 4, '2019-04-04', '1', 0);
+INSERT INTO `activity` VALUES (374, 5, '2019-04-04', '0', 0);
+INSERT INTO `activity` VALUES (375, 6, '2019-04-04', '1', 0);
+INSERT INTO `activity` VALUES (376, 7, '2019-04-04', '8', 0);
+INSERT INTO `activity` VALUES (377, 8, '2019-04-04', '0', 0);
+INSERT INTO `activity` VALUES (378, 1, '2019-04-05', '0', 0);
+INSERT INTO `activity` VALUES (379, 2, '2019-04-05', '4.5', 0);
+INSERT INTO `activity` VALUES (380, 3, '2019-04-05', '1.5', 0);
+INSERT INTO `activity` VALUES (381, 4, '2019-04-05', '8', 0);
+INSERT INTO `activity` VALUES (382, 5, '2019-04-05', '0', 0);
+INSERT INTO `activity` VALUES (383, 6, '2019-04-05', '1', 0);
+INSERT INTO `activity` VALUES (384, 7, '2019-04-05', '8', 0);
+INSERT INTO `activity` VALUES (385, 8, '2019-04-05', '1', 0);
+INSERT INTO `activity` VALUES (386, 1, '2019-04-06', '0', 0);
+INSERT INTO `activity` VALUES (387, 2, '2019-04-06', '2', 0);
+INSERT INTO `activity` VALUES (388, 3, '2019-04-06', '15', 0);
+INSERT INTO `activity` VALUES (389, 4, '2019-04-06', '1', 0);
+INSERT INTO `activity` VALUES (390, 5, '2019-04-06', '0', 0);
+INSERT INTO `activity` VALUES (391, 6, '2019-04-06', '1', 0);
+INSERT INTO `activity` VALUES (392, 7, '2019-04-06', '5', 0);
+INSERT INTO `activity` VALUES (393, 8, '2019-04-06', '0', 0);
+INSERT INTO `activity` VALUES (394, 1, '2019-04-07', '0', 0);
+INSERT INTO `activity` VALUES (395, 2, '2019-04-07', '3', 0);
+INSERT INTO `activity` VALUES (396, 3, '2019-04-07', '5.5', 0);
+INSERT INTO `activity` VALUES (397, 4, '2019-04-07', '2', 0);
+INSERT INTO `activity` VALUES (398, 5, '2019-04-07', '0', 0);
+INSERT INTO `activity` VALUES (399, 6, '2019-04-07', '3.5', 0);
+INSERT INTO `activity` VALUES (400, 7, '2019-04-07', '10', 0);
+INSERT INTO `activity` VALUES (401, 8, '2019-04-07', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -494,5 +526,9 @@ INSERT INTO `activityround` VALUES ('2019-03-31');
 INSERT INTO `activityround` VALUES ('2019-04-01');
 INSERT INTO `activityround` VALUES ('2019-04-02');
 INSERT INTO `activityround` VALUES ('2019-04-03');
+INSERT INTO `activityround` VALUES ('2019-04-04');
+INSERT INTO `activityround` VALUES ('2019-04-05');
+INSERT INTO `activityround` VALUES ('2019-04-06');
+INSERT INTO `activityround` VALUES ('2019-04-07');
 
 SET FOREIGN_KEY_CHECKS = 1;
