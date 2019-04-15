@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 15/04/2019 19:11:36
+ Date: 15/04/2019 20:44:41
 */
 
 SET NAMES utf8mb4;
@@ -453,6 +453,30 @@ INSERT INTO `activity` VALUES (430, 5, '2019-04-11', '0', 0);
 INSERT INTO `activity` VALUES (431, 6, '2019-04-11', '1', 0);
 INSERT INTO `activity` VALUES (432, 7, '2019-04-11', '7', 0);
 INSERT INTO `activity` VALUES (433, 8, '2019-04-11', '0', 0);
+INSERT INTO `activity` VALUES (434, 1, '2019-04-13', '0', 0);
+INSERT INTO `activity` VALUES (435, 2, '2019-04-13', '3.75', 0);
+INSERT INTO `activity` VALUES (436, 3, '2019-04-13', '16.25', 0);
+INSERT INTO `activity` VALUES (437, 4, '2019-04-13', '2', 0);
+INSERT INTO `activity` VALUES (438, 5, '2019-04-13', '0', 0);
+INSERT INTO `activity` VALUES (439, 6, '2019-04-13', '1', 0);
+INSERT INTO `activity` VALUES (440, 7, '2019-04-13', '1', 0);
+INSERT INTO `activity` VALUES (441, 8, '2019-04-13', '0', 0);
+INSERT INTO `activity` VALUES (442, 1, '2019-04-12', '8', 0);
+INSERT INTO `activity` VALUES (443, 2, '2019-04-12', '3.5', 0);
+INSERT INTO `activity` VALUES (444, 3, '2019-04-12', '3', 0);
+INSERT INTO `activity` VALUES (445, 4, '2019-04-12', '0', 0);
+INSERT INTO `activity` VALUES (446, 5, '2019-04-12', '0', 0);
+INSERT INTO `activity` VALUES (447, 6, '2019-04-12', '0.5', 0);
+INSERT INTO `activity` VALUES (448, 7, '2019-04-12', '9', 0);
+INSERT INTO `activity` VALUES (449, 8, '2019-04-12', '0', 0);
+INSERT INTO `activity` VALUES (450, 1, '2019-04-14', '0', 0);
+INSERT INTO `activity` VALUES (451, 2, '2019-04-14', '1.5', 0);
+INSERT INTO `activity` VALUES (452, 3, '2019-04-14', '11', 0);
+INSERT INTO `activity` VALUES (453, 4, '2019-04-14', '0', 0);
+INSERT INTO `activity` VALUES (454, 5, '2019-04-14', '0', 0);
+INSERT INTO `activity` VALUES (455, 6, '2019-04-14', '1', 0);
+INSERT INTO `activity` VALUES (456, 7, '2019-04-14', '10.5', 0);
+INSERT INTO `activity` VALUES (457, 8, '2019-04-14', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -566,5 +590,8 @@ INSERT INTO `activityround` VALUES ('2019-04-08');
 INSERT INTO `activityround` VALUES ('2019-04-09');
 INSERT INTO `activityround` VALUES ('2019-04-10');
 INSERT INTO `activityround` VALUES ('2019-04-11');
+INSERT INTO `activityround` VALUES ('2019-04-12');
+INSERT INTO `activityround` VALUES ('2019-04-13');
+INSERT INTO `activityround` VALUES ('2019-04-14');
 
 SET FOREIGN_KEY_CHECKS = 1;
