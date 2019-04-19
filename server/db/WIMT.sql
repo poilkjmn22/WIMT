@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 15/04/2019 20:44:41
+ Date: 19/04/2019 19:02:00
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 434 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 489 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -477,6 +477,38 @@ INSERT INTO `activity` VALUES (454, 5, '2019-04-14', '0', 0);
 INSERT INTO `activity` VALUES (455, 6, '2019-04-14', '1', 0);
 INSERT INTO `activity` VALUES (456, 7, '2019-04-14', '10.5', 0);
 INSERT INTO `activity` VALUES (457, 8, '2019-04-14', '0', 0);
+INSERT INTO `activity` VALUES (458, 1, '2019-04-15', '8', 0);
+INSERT INTO `activity` VALUES (459, 2, '2019-04-15', '5', 0);
+INSERT INTO `activity` VALUES (460, 3, '2019-04-15', '2', 0);
+INSERT INTO `activity` VALUES (461, 4, '2019-04-15', '0', 0);
+INSERT INTO `activity` VALUES (462, 5, '2019-04-15', '0', 0);
+INSERT INTO `activity` VALUES (463, 6, '2019-04-15', '0', 0);
+INSERT INTO `activity` VALUES (464, 7, '2019-04-15', '9', 0);
+INSERT INTO `activity` VALUES (465, 8, '2019-04-15', '0', 0);
+INSERT INTO `activity` VALUES (466, 1, '2019-04-16', '8', 0);
+INSERT INTO `activity` VALUES (467, 2, '2019-04-16', '4', 0);
+INSERT INTO `activity` VALUES (468, 3, '2019-04-16', '1.5', 0);
+INSERT INTO `activity` VALUES (469, 4, '2019-04-16', '1', 0);
+INSERT INTO `activity` VALUES (470, 5, '2019-04-16', '0', 0);
+INSERT INTO `activity` VALUES (471, 6, '2019-04-16', '0', 0);
+INSERT INTO `activity` VALUES (472, 7, '2019-04-16', '9.5', 0);
+INSERT INTO `activity` VALUES (473, 8, '2019-04-16', '0', 0);
+INSERT INTO `activity` VALUES (474, 1, '2019-04-17', '8', 0);
+INSERT INTO `activity` VALUES (475, 2, '2019-04-17', '3', 0);
+INSERT INTO `activity` VALUES (476, 3, '2019-04-17', '1', 0);
+INSERT INTO `activity` VALUES (477, 4, '2019-04-17', '2', 0);
+INSERT INTO `activity` VALUES (478, 5, '2019-04-17', '0', 0);
+INSERT INTO `activity` VALUES (479, 6, '2019-04-17', '1', 0);
+INSERT INTO `activity` VALUES (480, 7, '2019-04-17', '9', 0);
+INSERT INTO `activity` VALUES (481, 8, '2019-04-17', '0', 0);
+INSERT INTO `activity` VALUES (482, 1, '2019-04-18', '9', 0);
+INSERT INTO `activity` VALUES (483, 2, '2019-04-18', '3', 0);
+INSERT INTO `activity` VALUES (484, 3, '2019-04-18', '1', 0);
+INSERT INTO `activity` VALUES (485, 4, '2019-04-18', '0.5', 0);
+INSERT INTO `activity` VALUES (486, 5, '2019-04-18', '0', 0);
+INSERT INTO `activity` VALUES (487, 6, '2019-04-18', '0', 0);
+INSERT INTO `activity` VALUES (488, 7, '2019-04-18', '10', 0);
+INSERT INTO `activity` VALUES (489, 8, '2019-04-18', '0.5', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -487,7 +519,7 @@ CREATE TABLE `activityclass`  (
   `Name` char(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `LocalName` char(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activityclass
@@ -512,7 +544,7 @@ CREATE TABLE `activityclassinfo`  (
   PRIMARY KEY (`ID`) USING BTREE,
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_3` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activityclassinfo
@@ -593,5 +625,9 @@ INSERT INTO `activityround` VALUES ('2019-04-11');
 INSERT INTO `activityround` VALUES ('2019-04-12');
 INSERT INTO `activityround` VALUES ('2019-04-13');
 INSERT INTO `activityround` VALUES ('2019-04-14');
+INSERT INTO `activityround` VALUES ('2019-04-15');
+INSERT INTO `activityround` VALUES ('2019-04-16');
+INSERT INTO `activityround` VALUES ('2019-04-17');
+INSERT INTO `activityround` VALUES ('2019-04-18');
 
 SET FOREIGN_KEY_CHECKS = 1;
