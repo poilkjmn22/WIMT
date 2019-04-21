@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 19/04/2019 19:02:00
+ Date: 21/04/2019 21:52:46
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 489 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 514 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -509,6 +509,30 @@ INSERT INTO `activity` VALUES (486, 5, '2019-04-18', '0', 0);
 INSERT INTO `activity` VALUES (487, 6, '2019-04-18', '0', 0);
 INSERT INTO `activity` VALUES (488, 7, '2019-04-18', '10', 0);
 INSERT INTO `activity` VALUES (489, 8, '2019-04-18', '0.5', 0);
+INSERT INTO `activity` VALUES (490, 1, '2019-04-19', '8', 0);
+INSERT INTO `activity` VALUES (491, 2, '2019-04-19', '4', 0);
+INSERT INTO `activity` VALUES (492, 3, '2019-04-19', '4', 0);
+INSERT INTO `activity` VALUES (493, 4, '2019-04-19', '0', 0);
+INSERT INTO `activity` VALUES (494, 5, '2019-04-19', '0', 0);
+INSERT INTO `activity` VALUES (495, 6, '2019-04-19', '1', 0);
+INSERT INTO `activity` VALUES (496, 7, '2019-04-19', '7', 0);
+INSERT INTO `activity` VALUES (497, 8, '2019-04-19', '0', 0);
+INSERT INTO `activity` VALUES (498, 1, '2019-04-20', '0', 0);
+INSERT INTO `activity` VALUES (499, 2, '2019-04-20', '3', 0);
+INSERT INTO `activity` VALUES (500, 3, '2019-04-20', '8.5', 0);
+INSERT INTO `activity` VALUES (501, 4, '2019-04-20', '1', 0);
+INSERT INTO `activity` VALUES (502, 5, '2019-04-20', '1.5', 0);
+INSERT INTO `activity` VALUES (503, 6, '2019-04-20', '2', 0);
+INSERT INTO `activity` VALUES (504, 7, '2019-04-20', '8', 0);
+INSERT INTO `activity` VALUES (505, 8, '2019-04-20', '0', 0);
+INSERT INTO `activity` VALUES (506, 1, '2019-04-21', '0', 0);
+INSERT INTO `activity` VALUES (507, 2, '2019-04-21', '0', 0);
+INSERT INTO `activity` VALUES (508, 3, '2019-04-21', '4.5', 0);
+INSERT INTO `activity` VALUES (509, 4, '2019-04-21', '3', 0);
+INSERT INTO `activity` VALUES (510, 5, '2019-04-21', '1', 0);
+INSERT INTO `activity` VALUES (511, 6, '2019-04-21', '1', 0);
+INSERT INTO `activity` VALUES (512, 7, '2019-04-21', '8', 0);
+INSERT INTO `activity` VALUES (513, 8, '2019-04-21', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -519,7 +543,7 @@ CREATE TABLE `activityclass`  (
   `Name` char(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `LocalName` char(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activityclass
@@ -544,7 +568,7 @@ CREATE TABLE `activityclassinfo`  (
   PRIMARY KEY (`ID`) USING BTREE,
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_3` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activityclassinfo
@@ -629,5 +653,8 @@ INSERT INTO `activityround` VALUES ('2019-04-15');
 INSERT INTO `activityround` VALUES ('2019-04-16');
 INSERT INTO `activityround` VALUES ('2019-04-17');
 INSERT INTO `activityround` VALUES ('2019-04-18');
+INSERT INTO `activityround` VALUES ('2019-04-19');
+INSERT INTO `activityround` VALUES ('2019-04-20');
+INSERT INTO `activityround` VALUES ('2019-04-21');
 
 SET FOREIGN_KEY_CHECKS = 1;
