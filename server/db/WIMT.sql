@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 13/05/2019 19:40:11
+ Date: 24/05/2019 09:46:08
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 682 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 770 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -701,6 +701,94 @@ INSERT INTO `activity` VALUES (678, 5, '2019-05-12', '0', 0);
 INSERT INTO `activity` VALUES (679, 6, '2019-05-12', '1', 0);
 INSERT INTO `activity` VALUES (680, 7, '2019-05-12', '11.5', 0);
 INSERT INTO `activity` VALUES (681, 8, '2019-05-12', '0', 0);
+INSERT INTO `activity` VALUES (682, 1, '2019-05-13', '8', 0);
+INSERT INTO `activity` VALUES (683, 2, '2019-05-13', '4.5', 0);
+INSERT INTO `activity` VALUES (684, 3, '2019-05-13', '1.5', 0);
+INSERT INTO `activity` VALUES (685, 4, '2019-05-13', '1', 0);
+INSERT INTO `activity` VALUES (686, 5, '2019-05-13', '0', 0);
+INSERT INTO `activity` VALUES (687, 6, '2019-05-13', '0.5', 0);
+INSERT INTO `activity` VALUES (688, 7, '2019-05-13', '8.5', 0);
+INSERT INTO `activity` VALUES (689, 8, '2019-05-13', '0', 0);
+INSERT INTO `activity` VALUES (690, 1, '2019-05-14', '8', 0);
+INSERT INTO `activity` VALUES (691, 2, '2019-05-14', '4.5', 0);
+INSERT INTO `activity` VALUES (692, 3, '2019-05-14', '2', 0);
+INSERT INTO `activity` VALUES (693, 4, '2019-05-14', '1', 0);
+INSERT INTO `activity` VALUES (694, 5, '2019-05-14', '0', 0);
+INSERT INTO `activity` VALUES (695, 6, '2019-05-14', '0.5', 0);
+INSERT INTO `activity` VALUES (696, 7, '2019-05-14', '8', 0);
+INSERT INTO `activity` VALUES (697, 8, '2019-05-14', '0', 0);
+INSERT INTO `activity` VALUES (698, 1, '2019-05-15', '0', 0);
+INSERT INTO `activity` VALUES (699, 2, '2019-05-15', '4', 0);
+INSERT INTO `activity` VALUES (700, 3, '2019-05-15', '8', 0);
+INSERT INTO `activity` VALUES (701, 4, '2019-05-15', '3', 0);
+INSERT INTO `activity` VALUES (702, 5, '2019-05-15', '0', 0);
+INSERT INTO `activity` VALUES (703, 6, '2019-05-15', '3', 0);
+INSERT INTO `activity` VALUES (704, 7, '2019-05-15', '6', 0);
+INSERT INTO `activity` VALUES (705, 8, '2019-05-15', '0', 0);
+INSERT INTO `activity` VALUES (706, 1, '2019-05-16', '8', 0);
+INSERT INTO `activity` VALUES (707, 2, '2019-05-16', '3.5', 0);
+INSERT INTO `activity` VALUES (708, 3, '2019-05-16', '1.5', 0);
+INSERT INTO `activity` VALUES (709, 4, '2019-05-16', '1', 0);
+INSERT INTO `activity` VALUES (710, 5, '2019-05-16', '0', 0);
+INSERT INTO `activity` VALUES (711, 6, '2019-05-16', '0.5', 0);
+INSERT INTO `activity` VALUES (712, 7, '2019-05-16', '9', 0);
+INSERT INTO `activity` VALUES (713, 8, '2019-05-16', '0.5', 0);
+INSERT INTO `activity` VALUES (714, 1, '2019-05-19', '0', 0);
+INSERT INTO `activity` VALUES (715, 2, '2019-05-19', '2.5', 0);
+INSERT INTO `activity` VALUES (716, 3, '2019-05-19', '3', 0);
+INSERT INTO `activity` VALUES (717, 4, '2019-05-19', '4', 0);
+INSERT INTO `activity` VALUES (718, 5, '2019-05-19', '0', 0);
+INSERT INTO `activity` VALUES (719, 6, '2019-05-19', '1.5', 0);
+INSERT INTO `activity` VALUES (720, 7, '2019-05-19', '13', 0);
+INSERT INTO `activity` VALUES (721, 8, '2019-05-19', '0', 0);
+INSERT INTO `activity` VALUES (722, 1, '2019-05-18', '0', 0);
+INSERT INTO `activity` VALUES (723, 2, '2019-05-18', '3', 0);
+INSERT INTO `activity` VALUES (724, 3, '2019-05-18', '6', 0);
+INSERT INTO `activity` VALUES (725, 4, '2019-05-18', '0', 0);
+INSERT INTO `activity` VALUES (726, 5, '2019-05-18', '2.5', 0);
+INSERT INTO `activity` VALUES (727, 6, '2019-05-18', '2', 0);
+INSERT INTO `activity` VALUES (728, 7, '2019-05-18', '10.5', 0);
+INSERT INTO `activity` VALUES (729, 8, '2019-05-18', '0', 0);
+INSERT INTO `activity` VALUES (730, 1, '2019-05-17', '8', 0);
+INSERT INTO `activity` VALUES (731, 2, '2019-05-17', '2.5', 0);
+INSERT INTO `activity` VALUES (732, 3, '2019-05-17', '1', 0);
+INSERT INTO `activity` VALUES (733, 4, '2019-05-17', '2', 0);
+INSERT INTO `activity` VALUES (734, 5, '2019-05-17', '0', 0);
+INSERT INTO `activity` VALUES (735, 6, '2019-05-17', '0.5', 0);
+INSERT INTO `activity` VALUES (736, 7, '2019-05-17', '10', 0);
+INSERT INTO `activity` VALUES (737, 8, '2019-05-17', '0', 0);
+INSERT INTO `activity` VALUES (738, 1, '2019-05-20', '8', 0);
+INSERT INTO `activity` VALUES (739, 2, '2019-05-20', '3.5', 0);
+INSERT INTO `activity` VALUES (740, 3, '2019-05-20', '1', 0);
+INSERT INTO `activity` VALUES (741, 4, '2019-05-20', '1', 0);
+INSERT INTO `activity` VALUES (742, 5, '2019-05-20', '0', 0);
+INSERT INTO `activity` VALUES (743, 6, '2019-05-20', '0.5', 0);
+INSERT INTO `activity` VALUES (744, 7, '2019-05-20', '10', 0);
+INSERT INTO `activity` VALUES (745, 8, '2019-05-20', '0', 0);
+INSERT INTO `activity` VALUES (746, 1, '2019-05-21', '8', 0);
+INSERT INTO `activity` VALUES (747, 2, '2019-05-21', '3.5', 0);
+INSERT INTO `activity` VALUES (748, 3, '2019-05-21', '1.5', 0);
+INSERT INTO `activity` VALUES (749, 4, '2019-05-21', '1', 0);
+INSERT INTO `activity` VALUES (750, 5, '2019-05-21', '0', 0);
+INSERT INTO `activity` VALUES (751, 6, '2019-05-21', '0', 0);
+INSERT INTO `activity` VALUES (752, 7, '2019-05-21', '10', 0);
+INSERT INTO `activity` VALUES (753, 8, '2019-05-21', '0', 0);
+INSERT INTO `activity` VALUES (754, 1, '2019-05-22', '8', 0);
+INSERT INTO `activity` VALUES (755, 2, '2019-05-22', '3.5', 0);
+INSERT INTO `activity` VALUES (756, 3, '2019-05-22', '1.5', 0);
+INSERT INTO `activity` VALUES (757, 4, '2019-05-22', '1.5', 0);
+INSERT INTO `activity` VALUES (758, 5, '2019-05-22', '0', 0);
+INSERT INTO `activity` VALUES (759, 6, '2019-05-22', '0.5', 0);
+INSERT INTO `activity` VALUES (760, 7, '2019-05-22', '9', 0);
+INSERT INTO `activity` VALUES (761, 8, '2019-05-22', '0', 0);
+INSERT INTO `activity` VALUES (762, 1, '2019-05-23', '8', 0);
+INSERT INTO `activity` VALUES (763, 2, '2019-05-23', '4.5', 0);
+INSERT INTO `activity` VALUES (764, 3, '2019-05-23', '1.5', 0);
+INSERT INTO `activity` VALUES (765, 4, '2019-05-23', '0', 0);
+INSERT INTO `activity` VALUES (766, 5, '2019-05-23', '0', 0);
+INSERT INTO `activity` VALUES (767, 6, '2019-05-23', '0', 0);
+INSERT INTO `activity` VALUES (768, 7, '2019-05-23', '10', 0);
+INSERT INTO `activity` VALUES (769, 8, '2019-05-23', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -845,5 +933,16 @@ INSERT INTO `activityround` VALUES ('2019-05-09');
 INSERT INTO `activityround` VALUES ('2019-05-10');
 INSERT INTO `activityround` VALUES ('2019-05-11');
 INSERT INTO `activityround` VALUES ('2019-05-12');
+INSERT INTO `activityround` VALUES ('2019-05-13');
+INSERT INTO `activityround` VALUES ('2019-05-14');
+INSERT INTO `activityround` VALUES ('2019-05-15');
+INSERT INTO `activityround` VALUES ('2019-05-16');
+INSERT INTO `activityround` VALUES ('2019-05-17');
+INSERT INTO `activityround` VALUES ('2019-05-18');
+INSERT INTO `activityround` VALUES ('2019-05-19');
+INSERT INTO `activityround` VALUES ('2019-05-20');
+INSERT INTO `activityround` VALUES ('2019-05-21');
+INSERT INTO `activityround` VALUES ('2019-05-22');
+INSERT INTO `activityround` VALUES ('2019-05-23');
 
 SET FOREIGN_KEY_CHECKS = 1;
