@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 31/05/2019 09:52:26
+ Date: 13/06/2019 22:15:44
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 826 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 930 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -845,6 +845,110 @@ INSERT INTO `activity` VALUES (822, 5, '2019-05-30', '0', 0);
 INSERT INTO `activity` VALUES (823, 6, '2019-05-30', '0.5', 0);
 INSERT INTO `activity` VALUES (824, 7, '2019-05-30', '9', 0);
 INSERT INTO `activity` VALUES (825, 8, '2019-05-30', '0', 0);
+INSERT INTO `activity` VALUES (826, 1, '2019-05-31', '8', 0);
+INSERT INTO `activity` VALUES (827, 2, '2019-05-31', '4', 0);
+INSERT INTO `activity` VALUES (828, 3, '2019-05-31', '1', 0);
+INSERT INTO `activity` VALUES (829, 4, '2019-05-31', '2', 0);
+INSERT INTO `activity` VALUES (830, 5, '2019-05-31', '0', 0);
+INSERT INTO `activity` VALUES (831, 6, '2019-05-31', '1', 0);
+INSERT INTO `activity` VALUES (832, 7, '2019-05-31', '7.5', 0);
+INSERT INTO `activity` VALUES (833, 8, '2019-05-31', '0.5', 0);
+INSERT INTO `activity` VALUES (834, 1, '2019-06-01', '0', 0);
+INSERT INTO `activity` VALUES (835, 2, '2019-06-01', '2.5', 0);
+INSERT INTO `activity` VALUES (836, 3, '2019-06-01', '18', 0);
+INSERT INTO `activity` VALUES (837, 4, '2019-06-01', '0', 0);
+INSERT INTO `activity` VALUES (838, 5, '2019-06-01', '0.5', 0);
+INSERT INTO `activity` VALUES (839, 6, '2019-06-01', '3', 0);
+INSERT INTO `activity` VALUES (840, 7, '2019-06-01', '0', 0);
+INSERT INTO `activity` VALUES (841, 8, '2019-06-01', '0', 0);
+INSERT INTO `activity` VALUES (842, 1, '2019-06-03', '8', 0);
+INSERT INTO `activity` VALUES (843, 2, '2019-06-03', '5', 0);
+INSERT INTO `activity` VALUES (844, 3, '2019-06-03', '1.5', 0);
+INSERT INTO `activity` VALUES (845, 4, '2019-06-03', '1.5', 0);
+INSERT INTO `activity` VALUES (846, 5, '2019-06-03', '0', 0);
+INSERT INTO `activity` VALUES (847, 6, '2019-06-03', '1', 0);
+INSERT INTO `activity` VALUES (848, 7, '2019-06-03', '7', 0);
+INSERT INTO `activity` VALUES (849, 8, '2019-06-03', '0', 0);
+INSERT INTO `activity` VALUES (850, 1, '2019-06-02', '0', 0);
+INSERT INTO `activity` VALUES (851, 2, '2019-06-02', '6', 0);
+INSERT INTO `activity` VALUES (852, 3, '2019-06-02', '3', 0);
+INSERT INTO `activity` VALUES (853, 4, '2019-06-02', '2', 0);
+INSERT INTO `activity` VALUES (854, 5, '2019-06-02', '0', 0);
+INSERT INTO `activity` VALUES (855, 6, '2019-06-02', '0.5', 0);
+INSERT INTO `activity` VALUES (856, 7, '2019-06-02', '12.5', 0);
+INSERT INTO `activity` VALUES (857, 8, '2019-06-02', '0', 0);
+INSERT INTO `activity` VALUES (858, 1, '2019-06-05', '8', 0);
+INSERT INTO `activity` VALUES (859, 2, '2019-06-05', '4', 0);
+INSERT INTO `activity` VALUES (860, 3, '2019-06-05', '1', 0);
+INSERT INTO `activity` VALUES (861, 4, '2019-06-05', '2', 0);
+INSERT INTO `activity` VALUES (862, 5, '2019-06-05', '0', 0);
+INSERT INTO `activity` VALUES (863, 6, '2019-06-05', '0.5', 0);
+INSERT INTO `activity` VALUES (864, 7, '2019-06-05', '8.5', 0);
+INSERT INTO `activity` VALUES (865, 8, '2019-06-05', '0', 0);
+INSERT INTO `activity` VALUES (866, 1, '2019-06-06', '8', 0);
+INSERT INTO `activity` VALUES (867, 2, '2019-06-06', '2.5', 0);
+INSERT INTO `activity` VALUES (868, 3, '2019-06-06', '4', 0);
+INSERT INTO `activity` VALUES (869, 4, '2019-06-06', '0', 0);
+INSERT INTO `activity` VALUES (870, 5, '2019-06-06', '0', 0);
+INSERT INTO `activity` VALUES (871, 6, '2019-06-06', '0', 0);
+INSERT INTO `activity` VALUES (872, 7, '2019-06-06', '9.5', 0);
+INSERT INTO `activity` VALUES (873, 8, '2019-06-06', '0', 0);
+INSERT INTO `activity` VALUES (874, 1, '2019-06-07', '0', 0);
+INSERT INTO `activity` VALUES (875, 2, '2019-06-07', '4.5', 0);
+INSERT INTO `activity` VALUES (876, 3, '2019-06-07', '7', 0);
+INSERT INTO `activity` VALUES (877, 4, '2019-06-07', '2.5', 0);
+INSERT INTO `activity` VALUES (878, 5, '2019-06-07', '0', 0);
+INSERT INTO `activity` VALUES (879, 6, '2019-06-07', '1.5', 0);
+INSERT INTO `activity` VALUES (880, 7, '2019-06-07', '8.5', 0);
+INSERT INTO `activity` VALUES (881, 8, '2019-06-07', '0', 0);
+INSERT INTO `activity` VALUES (882, 1, '2019-06-08', '0', 0);
+INSERT INTO `activity` VALUES (883, 2, '2019-06-08', '4', 0);
+INSERT INTO `activity` VALUES (884, 3, '2019-06-08', '17', 0);
+INSERT INTO `activity` VALUES (885, 4, '2019-06-08', '0', 0);
+INSERT INTO `activity` VALUES (886, 5, '2019-06-08', '0', 0);
+INSERT INTO `activity` VALUES (887, 6, '2019-06-08', '3', 0);
+INSERT INTO `activity` VALUES (888, 7, '2019-06-08', '0', 0);
+INSERT INTO `activity` VALUES (889, 8, '2019-06-08', '0', 0);
+INSERT INTO `activity` VALUES (890, 1, '2019-06-09', '0', 0);
+INSERT INTO `activity` VALUES (891, 2, '2019-06-09', '4', 0);
+INSERT INTO `activity` VALUES (892, 3, '2019-06-09', '1.5', 0);
+INSERT INTO `activity` VALUES (893, 4, '2019-06-09', '2', 0);
+INSERT INTO `activity` VALUES (894, 5, '2019-06-09', '0', 0);
+INSERT INTO `activity` VALUES (895, 6, '2019-06-09', '0.5', 0);
+INSERT INTO `activity` VALUES (896, 7, '2019-06-09', '16', 0);
+INSERT INTO `activity` VALUES (897, 8, '2019-06-09', '0', 0);
+INSERT INTO `activity` VALUES (898, 1, '2019-06-10', '8', 0);
+INSERT INTO `activity` VALUES (899, 2, '2019-06-10', '3.5', 0);
+INSERT INTO `activity` VALUES (900, 3, '2019-06-10', '1.5', 0);
+INSERT INTO `activity` VALUES (901, 4, '2019-06-10', '2', 0);
+INSERT INTO `activity` VALUES (902, 5, '2019-06-10', '0', 0);
+INSERT INTO `activity` VALUES (903, 6, '2019-06-10', '1', 0);
+INSERT INTO `activity` VALUES (904, 7, '2019-06-10', '8', 0);
+INSERT INTO `activity` VALUES (905, 8, '2019-06-10', '0', 0);
+INSERT INTO `activity` VALUES (906, 1, '2019-06-11', '8', 0);
+INSERT INTO `activity` VALUES (907, 2, '2019-06-11', '4.5', 0);
+INSERT INTO `activity` VALUES (908, 3, '2019-06-11', '1', 0);
+INSERT INTO `activity` VALUES (909, 4, '2019-06-11', '0.5', 0);
+INSERT INTO `activity` VALUES (910, 5, '2019-06-11', '0', 0);
+INSERT INTO `activity` VALUES (911, 6, '2019-06-11', '1', 0);
+INSERT INTO `activity` VALUES (912, 7, '2019-06-11', '8', 0);
+INSERT INTO `activity` VALUES (913, 8, '2019-06-11', '1', 0);
+INSERT INTO `activity` VALUES (914, 1, '2019-06-12', '8', 0);
+INSERT INTO `activity` VALUES (915, 2, '2019-06-12', '4', 0);
+INSERT INTO `activity` VALUES (916, 3, '2019-06-12', '1', 0);
+INSERT INTO `activity` VALUES (917, 4, '2019-06-12', '1.5', 0);
+INSERT INTO `activity` VALUES (918, 5, '2019-06-12', '0', 0);
+INSERT INTO `activity` VALUES (919, 6, '2019-06-12', '0.5', 0);
+INSERT INTO `activity` VALUES (920, 7, '2019-06-12', '9', 0);
+INSERT INTO `activity` VALUES (921, 8, '2019-06-12', '0', 0);
+INSERT INTO `activity` VALUES (922, 1, '2019-06-13', '8', 0);
+INSERT INTO `activity` VALUES (923, 2, '2019-06-13', '0', 0);
+INSERT INTO `activity` VALUES (924, 3, '2019-06-13', '0', 0);
+INSERT INTO `activity` VALUES (925, 4, '2019-06-13', '1', 0);
+INSERT INTO `activity` VALUES (926, 5, '2019-06-13', '0', 0);
+INSERT INTO `activity` VALUES (927, 6, '2019-06-13', '0.5', 0);
+INSERT INTO `activity` VALUES (928, 7, '2019-06-13', '8', 0);
+INSERT INTO `activity` VALUES (929, 8, '2019-06-13', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -1007,5 +1111,18 @@ INSERT INTO `activityround` VALUES ('2019-05-27');
 INSERT INTO `activityround` VALUES ('2019-05-28');
 INSERT INTO `activityround` VALUES ('2019-05-29');
 INSERT INTO `activityround` VALUES ('2019-05-30');
+INSERT INTO `activityround` VALUES ('2019-05-31');
+INSERT INTO `activityround` VALUES ('2019-06-01');
+INSERT INTO `activityround` VALUES ('2019-06-02');
+INSERT INTO `activityround` VALUES ('2019-06-03');
+INSERT INTO `activityround` VALUES ('2019-06-05');
+INSERT INTO `activityround` VALUES ('2019-06-06');
+INSERT INTO `activityround` VALUES ('2019-06-07');
+INSERT INTO `activityround` VALUES ('2019-06-08');
+INSERT INTO `activityround` VALUES ('2019-06-09');
+INSERT INTO `activityround` VALUES ('2019-06-10');
+INSERT INTO `activityround` VALUES ('2019-06-11');
+INSERT INTO `activityround` VALUES ('2019-06-12');
+INSERT INTO `activityround` VALUES ('2019-06-13');
 
 SET FOREIGN_KEY_CHECKS = 1;
