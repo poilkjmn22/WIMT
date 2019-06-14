@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 13/06/2019 22:15:44
+ Date: 14/06/2019 10:03:44
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 930 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 938 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -942,13 +942,21 @@ INSERT INTO `activity` VALUES (919, 6, '2019-06-12', '0.5', 0);
 INSERT INTO `activity` VALUES (920, 7, '2019-06-12', '9', 0);
 INSERT INTO `activity` VALUES (921, 8, '2019-06-12', '0', 0);
 INSERT INTO `activity` VALUES (922, 1, '2019-06-13', '8', 0);
-INSERT INTO `activity` VALUES (923, 2, '2019-06-13', '0', 0);
-INSERT INTO `activity` VALUES (924, 3, '2019-06-13', '0', 0);
+INSERT INTO `activity` VALUES (923, 2, '2019-06-13', '4', 0);
+INSERT INTO `activity` VALUES (924, 3, '2019-06-13', '2.5', 0);
 INSERT INTO `activity` VALUES (925, 4, '2019-06-13', '1', 0);
 INSERT INTO `activity` VALUES (926, 5, '2019-06-13', '0', 0);
 INSERT INTO `activity` VALUES (927, 6, '2019-06-13', '0.5', 0);
 INSERT INTO `activity` VALUES (928, 7, '2019-06-13', '8', 0);
 INSERT INTO `activity` VALUES (929, 8, '2019-06-13', '0', 0);
+INSERT INTO `activity` VALUES (930, 1, '2019-06-04', '8', 0);
+INSERT INTO `activity` VALUES (931, 2, '2019-06-04', '4.5', 0);
+INSERT INTO `activity` VALUES (932, 3, '2019-06-04', '2', 0);
+INSERT INTO `activity` VALUES (933, 4, '2019-06-04', '1', 0);
+INSERT INTO `activity` VALUES (934, 5, '2019-06-04', '0', 0);
+INSERT INTO `activity` VALUES (935, 6, '2019-06-04', '0.5', 0);
+INSERT INTO `activity` VALUES (936, 7, '2019-06-04', '8', 0);
+INSERT INTO `activity` VALUES (937, 8, '2019-06-04', '0', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -1115,6 +1123,7 @@ INSERT INTO `activityround` VALUES ('2019-05-31');
 INSERT INTO `activityround` VALUES ('2019-06-01');
 INSERT INTO `activityround` VALUES ('2019-06-02');
 INSERT INTO `activityround` VALUES ('2019-06-03');
+INSERT INTO `activityround` VALUES ('2019-06-04');
 INSERT INTO `activityround` VALUES ('2019-06-05');
 INSERT INTO `activityround` VALUES ('2019-06-06');
 INSERT INTO `activityround` VALUES ('2019-06-07');
