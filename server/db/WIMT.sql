@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 14/06/2019 10:03:44
+ Date: 16/06/2019 21:52:26
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `activity`  (
   INDEX `ActivityClassID`(`ActivityClassID`) USING BTREE,
   CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`ActivityRoundDate`) REFERENCES `activityround` (`Date`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`ActivityClassID`) REFERENCES `activityclass` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 938 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 962 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of activity
@@ -957,6 +957,30 @@ INSERT INTO `activity` VALUES (934, 5, '2019-06-04', '0', 0);
 INSERT INTO `activity` VALUES (935, 6, '2019-06-04', '0.5', 0);
 INSERT INTO `activity` VALUES (936, 7, '2019-06-04', '8', 0);
 INSERT INTO `activity` VALUES (937, 8, '2019-06-04', '0', 0);
+INSERT INTO `activity` VALUES (938, 1, '2019-06-14', '8', 0);
+INSERT INTO `activity` VALUES (939, 2, '2019-06-14', '3', 0);
+INSERT INTO `activity` VALUES (940, 3, '2019-06-14', '1.5', 0);
+INSERT INTO `activity` VALUES (941, 4, '2019-06-14', '2.5', 0);
+INSERT INTO `activity` VALUES (942, 5, '2019-06-14', '0', 0);
+INSERT INTO `activity` VALUES (943, 6, '2019-06-14', '0', 0);
+INSERT INTO `activity` VALUES (944, 7, '2019-06-14', '9', 0);
+INSERT INTO `activity` VALUES (945, 8, '2019-06-14', '0', 0);
+INSERT INTO `activity` VALUES (946, 1, '2019-06-15', '0', 0);
+INSERT INTO `activity` VALUES (947, 2, '2019-06-15', '3', 0);
+INSERT INTO `activity` VALUES (948, 3, '2019-06-15', '6.5', 0);
+INSERT INTO `activity` VALUES (949, 4, '2019-06-15', '0', 0);
+INSERT INTO `activity` VALUES (950, 5, '2019-06-15', '2.5', 0);
+INSERT INTO `activity` VALUES (951, 6, '2019-06-15', '2', 0);
+INSERT INTO `activity` VALUES (952, 7, '2019-06-15', '10', 0);
+INSERT INTO `activity` VALUES (953, 8, '2019-06-15', '0', 0);
+INSERT INTO `activity` VALUES (954, 1, '2019-06-16', '0', 0);
+INSERT INTO `activity` VALUES (955, 2, '2019-06-16', '0', 0);
+INSERT INTO `activity` VALUES (956, 3, '2019-06-16', '2', 0);
+INSERT INTO `activity` VALUES (957, 4, '2019-06-16', '3', 0);
+INSERT INTO `activity` VALUES (958, 5, '2019-06-16', '0.5', 0);
+INSERT INTO `activity` VALUES (959, 6, '2019-06-16', '1', 0);
+INSERT INTO `activity` VALUES (960, 7, '2019-06-16', '1.5', 0);
+INSERT INTO `activity` VALUES (961, 8, '2019-06-16', '0.5', 0);
 
 -- ----------------------------
 -- Table structure for activityclass
@@ -1133,5 +1157,8 @@ INSERT INTO `activityround` VALUES ('2019-06-10');
 INSERT INTO `activityround` VALUES ('2019-06-11');
 INSERT INTO `activityround` VALUES ('2019-06-12');
 INSERT INTO `activityround` VALUES ('2019-06-13');
+INSERT INTO `activityround` VALUES ('2019-06-14');
+INSERT INTO `activityround` VALUES ('2019-06-15');
+INSERT INTO `activityround` VALUES ('2019-06-16');
 
 SET FOREIGN_KEY_CHECKS = 1;
