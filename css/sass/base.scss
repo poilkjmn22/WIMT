@@ -1,0 +1,89 @@
+$main-bgc: #2e3d4b;
+$main-blue: #1AA5FF;
+$main-gray: #EEF1F5;
+$main-yellow: #fde839;
+$dark-bgc-1: darken($main-bgc, 10%);
+$base-border-color: #dedede;
+$gray-border-color: #1F2D3C;
+$font-weight-color: #2E3D4B;
+$desc-font-color: #7F899A;
+$dark-gray-1: #1f2a33;
+
+$status-colors: (info: #909399, success:#67c23a, warning:#e6a23c, error:#f56c6c);
+
+$browser-prefix: webkit,o,ms,moz;
+@mixin polyfill($property, $value){
+  @each $prefix in $browser-prefix{
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin absolute-center($width, $height) {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: $width;
+    height: $height;
+}
+
+@mixin transform-center() {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+@mixin transform-hv-center() {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include polyfill(transform, translate(-50%, -50%));
+}
+
+@mixin transform-v-center() {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin layout-float($float-part: float-part, $main-part: main-part, $direction: left, $float-width: 200px) {
+    .#{$float-part} {
+        width: $float-width;
+        float: $direction;
+    }
+    .#{$main-part} {
+        margin-#{$direction}: $float-width;
+    }
+}
+
+@mixin text-ellipsis() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    &:hover{
+      overflow: visible;
+    }
+}
+
+@mixin clearfix(){
+  &::after{
+  	content: "";
+  	display: block;
+  	clear: both;
+  }
+}
+
+@mixin FS($size: 12px){
+  font-size: $size;
+}

@@ -1,0 +1,27 @@
+@import "./base.scss";
+.link-a-common{
+  color: $main-blue;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 20px;
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+}
+
+.msg-box__wrapper{
+  .download-chrome-msgbox{
+    &.message-box{
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    .message-box__btns{
+      position: absolute;
+      bottom: 15px;
+      right: 0;
+    }
+  }
+}

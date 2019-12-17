@@ -71,7 +71,7 @@ import JsonViewer from './components/JsonViewer'
 
 import DateTime from 'luxon/src/datetime.js'
 import axios from 'axios'
-import _ from 'lodash'
+import * as _ from 'lodash'
 
 import chartHelper from '../js/helper/chartHelper'
 

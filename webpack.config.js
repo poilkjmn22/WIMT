@@ -29,8 +29,6 @@ function getLocalIPv4(networkName = '本地连接'){
 
 const PUBLIC_PATH = '/dist/';
 
-const ipconfig = require('./ip.config.js')
-
 const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
     template: path.resolve(__dirname, 'HtmlTemplates/ejs/layout.ejs'),
     // 定义一个函数，告诉你当前页面的 pageName 和 使用的模版的 文件完整路径 templateFullPath，你返回一个模版引擎处理后的HTML字符串内容。
@@ -47,7 +45,7 @@ const autoWebPlugin = new AutoWebPlugin('./HtmlTemplates/AutoWebPlugin', {
             root: path.resolve(__dirname, 'HtmlTemplates/ejs/')
         });
     },
-    filename: 'index.html',
+    filename: (pageName) => _.kebabCase(pageName),
     outputPagemap: true
 });
 
@@ -157,7 +155,7 @@ module.exports = {
         compress: false,
         port: 8080,
         hot: true,
-        host: getLocalIPv4(ipconfig.networkName),
+        // host: getLocalIPv4(ipconfig.networkName),
         proxy: {
             '/class_in': 'http://192.168.10.141:9090'
             // '/class_in': 'http://192.168.10.253:9090'

@@ -39,7 +39,7 @@ Vue.use(Col)
 
 import wimt from '../js/utils'
 
-import _ from 'lodash'
+import * as _ from 'lodash'
 
 import axios from 'axios'
 const AJAX_STATE = require('../json/ajax-state.json')

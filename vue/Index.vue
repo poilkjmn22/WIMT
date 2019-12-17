@@ -3,7 +3,7 @@
 		<div class="header">
       <div class="header-inner w-1190 clearfix">
         <div class="logo float-left">
-          WIM<b class="logo-green mr-3">Time</b><font-awesome-icon class="logo-green" :icon="['fas', 'history']" />
+          WIM<b class="logo-green mr-3">Times</b><font-awesome-icon class="logo-green" :icon="['fas', 'history']" />
         </div>
         <div class="nav-menu float-right">
           <NavHeader>

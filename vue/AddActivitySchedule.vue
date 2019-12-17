@@ -44,7 +44,7 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Button)
 
-import _ from 'lodash'
+import * as _ from 'lodash'
 import axios from 'axios'
 import DateTime from 'luxon/src/datetime.js'
 export default {
