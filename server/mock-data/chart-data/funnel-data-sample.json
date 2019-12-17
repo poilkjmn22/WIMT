@@ -1,0 +1,41 @@
+[{
+    "name": "a",
+    "title": "a",
+    "rateTitle": "",
+    "value": 1402
+}, {
+    "name": "b",
+    "title": "b",
+    "rateTitle": "b率",
+    "value": 870
+}, {
+    "name": "c",
+    "title": "c",
+    "rateTitle": "c率",
+    "value": 328
+}, {
+    "name": "d",
+    "title": "d",
+    "rateTitle": "d率",
+    "value": 203
+}, {
+    "name": "e",
+    "title": "e",
+    "rateTitle": "e率",
+    "value": 160
+}, {
+    "name": "f",
+    "title": "f",
+    "rateTitle": "f率",
+    "value": 120
+}, {
+    "name": "g",
+    "title": "g",
+    "rateTitle": "g率",
+    "value": 84
+}, {
+    "name": "h",
+    "title": "h",
+    "rateTitle": "h率",
+    "value": 14
+}]

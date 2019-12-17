@@ -45,7 +45,7 @@ const DEFAULT_OPTIONS = {
   xAxisName: "名称",
   yAxisName: "数量",
   paging: {
-    size: 18,
+    size: 5,
     width: 20,
     height: 20,
     margin: 10
@@ -61,7 +61,7 @@ export default {
     data: {
       type: Array,
       default(){
-        return require('../../../json/chart-data/ranking-list-data-sample.json')
+        return require('../../../server/mock-data/chart-data/ranking-list-data-sample.json')
       }
     },
     options: {
@@ -174,7 +174,7 @@ export default {
         .append("image")
         .attr("width", options.xAxis.rankImgWidth)
         .attr("height", options.xAxis.rankImgHeight)
-        .attr("href", d => `/assets/img/statics/${d.rank}@2x.png`)
+        .attr("href", d => `/assets/images/${d.rank}@2x.png`)
         .attr("x", 0)
         .attr("y", (d, i) => d.position[0].y - options.xAxis.rankImgHeight * 0.5)
 
@@ -297,7 +297,7 @@ export default {
       .attr("y", VIEWPORT[1] - options.yAxis.bottom + 65)
       .attr("width", options.paging.width)
       .attr("height", options.paging.height)
-      .attr("href", "/assets/img/statics/btn_page_prev.png")
+      .attr("href", "/assets/images/btn_page_prev.png")
     prevBtn.on("click", () => {
       if(this.page > 1){
         this.page -= 1
@@ -310,7 +310,7 @@ export default {
       .attr("y", VIEWPORT[1] - options.yAxis.bottom + 65)
       .attr("width", options.paging.width)
       .attr("height", options.paging.height)
-      .attr("href", "/assets/img/statics/btn_page_next.png")
+      .attr("href", "/assets/images/btn_page_next.png")
 
     nextBtn.on("click", () => {
       if(this.page < this.pageCount){

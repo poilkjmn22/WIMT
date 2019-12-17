@@ -4,7 +4,17 @@
     element-loading-text="数据加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
-    d3 charts
+    <el-row type="flex" justify="space-around">
+      <el-col :span="10">
+        <funnel>
+        </funnel>
+      </el-col>
+      <el-col :span="10">
+        <ranking-list>
+      </ranking-list>
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 <script>
@@ -27,7 +37,14 @@ import axios from 'axios'
 const AJAX_STATE = require('../json/ajax-state')
 import DateTime from 'luxon/src/datetime'
 
+import Funnel from './components/charts/Funnel'
+import RankingList from './components/charts/RankingList'
+
 export default {
+  components: {
+    Funnel,
+    RankingList
+  },
   data(){
     return {
       AJAX_STATE,

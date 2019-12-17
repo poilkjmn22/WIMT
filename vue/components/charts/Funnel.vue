@@ -66,7 +66,7 @@ export default {
       default(){
         return {
           options: {},
-          data: require('../../../json/chart-data/funnel-data-sample.json')
+          data: require('../../../server/mock-data/chart-data/funnel-data-sample.json')
         }
       }
     }

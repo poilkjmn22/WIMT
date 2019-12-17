@@ -1,0 +1,120 @@
+{
+    "seriesData": [{
+        "uid": 0,
+        "rank": 1,
+        "rankvalue": [183, 100],
+        "name": "李敏镐"
+    }, {
+        "uid": 1,
+        "rank": 2,
+        "rankvalue": [100, 103],
+        "name": "林宥嘉"
+    }, {
+        "uid": 2,
+        "rank": 3,
+        "rankvalue": [100, 0],
+        "name": "刘德华"
+    }, {
+        "uid": 3,
+        "rank": 4,
+        "rankvalue": [70, 60],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 5,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    },{
+        "uid": 0,
+        "rank": 6,
+        "rankvalue": [183, 100],
+        "name": "李敏镐"
+    }, {
+        "uid": 1,
+        "rank": 7,
+        "rankvalue": [100, 103],
+        "name": "林宥嘉"
+    }, {
+        "uid": 2,
+        "rank": 8,
+        "rankvalue": [100, 0],
+        "name": "刘德华"
+    }, {
+        "uid": 3,
+        "rank": 9,
+        "rankvalue": [70, 60],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 10,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    },{
+        "uid": 0,
+        "rank": 11,
+        "rankvalue": [183, 100],
+        "name": "李敏镐"
+    }, {
+        "uid": 1,
+        "rank": 12,
+        "rankvalue": [100, 103],
+        "name": "林宥嘉"
+    }, {
+        "uid": 2,
+        "rank": 13,
+        "rankvalue": [100, 0],
+        "name": "刘德华"
+    }, {
+        "uid": 3,
+        "rank": 14,
+        "rankvalue": [70, 60],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 15,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    }, {
+        "uid": 2,
+        "rank": 16,
+        "rankvalue": [100, 0],
+        "name": "刘德华"
+    }, {
+        "uid": 3,
+        "rank": 17,
+        "rankvalue": [70, 60],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 18,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 19,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    }, {
+        "uid": 2,
+        "rank": 20,
+        "rankvalue": [100, 0],
+        "name": "刘德华"
+    }, {
+        "uid": 3,
+        "rank": 21,
+        "rankvalue": [70, 60],
+        "name": "周润发"
+    }, {
+        "uid": 4,
+        "rank": 22,
+        "rankvalue": [50, 50],
+        "name": "周润发"
+    }],
+    "seriesName": [{
+        "name": "预约量",
+        "color": "#1AA5FF"
+    }, {
+        "name": "待定量",
+        "color": "#A8DDFF"
+    }]
+}
