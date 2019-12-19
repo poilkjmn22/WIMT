@@ -4,6 +4,7 @@
     <el-submenu index="1">
       <template slot="title">d3可视化</template>
       <el-menu-item :index="parseNavMenuItemIndex('d3Charts')" :route="{name: 'd3Charts'}">d3 charts</el-menu-item>
+      <el-menu-item :index="parseNavMenuItemIndex('d3Demos')" :route="{name: 'd3Demos'}">d3 demos</el-menu-item>
     </el-submenu>
 
     <el-submenu index="2">

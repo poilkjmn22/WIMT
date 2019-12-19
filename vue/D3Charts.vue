@@ -11,7 +11,7 @@
       </el-col>
       <el-col :span="10">
         <ranking-list>
-      </ranking-list>
+        </ranking-list>
       </el-col>
     </el-row>
 

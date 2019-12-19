@@ -1,3 +1,5 @@
+import "../../../css/sass/share.scss";
+
 import "babel-polyfill";//ie9下语法错误
 import "../../../css/index.css";
 import "../../../assets/font-web-wimt/iconfont.css";
