@@ -1,62 +1,57 @@
 <template lang="html">
   <div class="">
-    <div ref="axisDemoBox" class="chart-box">
+    <el-row v-for="chunk in chunkDemoModules" type="flex" justify="space-around">
+      <el-col v-for="item in chunk" :span="Math.floor(24 / chunkSize)">
+        <div class="d3-demo-chart-box" :ref="getRefName(item)">
 
-    </div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import * as d3 from 'd3';
+import Vue from 'vue'
+import {
+  Row,
+  Col
+} from 'element-ui'
+Vue.use(Row)
+Vue.use(Col)
+
+import * as _ from 'lodash-es'
+import * as d3DemoModule from '../js/d3DemoModule'
 
 export default {
+  data(){
+    return {
+      demoModules: [],
+      chunkSize: 1
+    }
+  },
+  computed: {
+    chunkDemoModules(){
+      return _.chunk(this.demoModules, this.chunkSize)
+    }
+  },
+  methods: {
+    getRefName(item){
+      return _.camelCase(`d3-demo-${item.name}-box`)
+    }
+  },
+  watch: {
+    demoModules(val){
+      // console.dir(val)
+
+      this.$nextTick(() => {
+        _.each(val, v => {
+          d3DemoModule[_.camelCase(`draw-${v.name}-demo`)](this.$refs[this.getRefName(v)][0])
+        })
+      })
+    }
+  },
   mounted() {
-      const width = 800
-      const height = 600
-      const margin = {
-          top: 20,
-          right: 30,
-          bottom: 30,
-          left: 40
-      }
-
-      const svg = d3.select(this.$refs.axisDemoBox).append("svg")
-          .attr("viewBox", [0, 0, width, height])
-
-      var x = d3.scaleLinear()
-          .domain([0, 1])
-          .range([margin.left, width - margin.right])
-
-
-      const xAxis = svg => svg
-          .attr("transform", `translate(0,${height - margin.bottom})`)
-          .call(d3.axisTop(x)
-              .tickSize(width - margin.left - margin.right)
-              .tickFormat(x => `(${x.toFixed(1)})`)
-          )
-          .call(g => g.select('.domain').remove())
-          .call(g => g.selectAll(".tick:not(:first-of-type) line")
-            .attr("stroke-opacity", 0.5)
-            .attr("stroke-dasharray", "2,2"))
-          .call(g => g.selectAll(".tick text")
-            .attr("x", 10)
-            .attr("y", -4))
-
-      svg.append("g")
-          .call(xAxis);
-
-      var y = d3.scaleLinear()
-          .domain([0, 1])
-          .range([margin.top, height - margin.bottom].reverse())
-
-      const yAxis = svg => svg
-          .attr("transform", `translate(${margin.left}, 0)`)
-          .call(d3.axisLeft(y)
-            .ticks(15, '.2f')
-        )
-      svg.append("g")
-          .call(yAxis);
-
+    this.demoModules = d3DemoModule.demoModules
   }
 }
 </script>
