@@ -4,6 +4,8 @@
   width: 100%;
   height: 600px;
 
+  @extend .chart-box-shadow;
+
   svg{
     width: 100%;
     height: 100%;

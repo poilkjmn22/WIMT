@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
-    <el-row v-for="chunk in chunkDemoModules" type="flex" justify="space-around">
-      <el-col v-for="item in chunk" :span="Math.floor(24 / chunkSize)">
+    <el-row v-for="chunk in chunkDemoModules" class="chunk-module-row" type="flex" justify="space-between">
+      <el-col v-for="item in chunk" :span="Math.floor(22 / chunkSize)">
         <div class="d3-demo-chart-box" :ref="getRefName(item)">
 
         </div>
@@ -26,7 +26,7 @@ export default {
   data(){
     return {
       demoModules: [],
-      chunkSize: 1
+      chunkSize: 2
     }
   },
   computed: {
@@ -57,5 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.chunk-module-row{
+  margin-bottom: 20px;
+}
 </style>
