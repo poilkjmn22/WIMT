@@ -137,7 +137,8 @@ module.exports = {
     resolve: {
         mainFields: ['jsnext:main', 'modules', 'main'],
         alias: {
-            Components: './components'
+            Components: './components',
+            '@': path.resolve(__dirname, '../')
         },
         extensions: ['.js', '.vue', '.json'],
         modules: ['node_modules']

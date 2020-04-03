@@ -1,0 +1,7 @@
+{
+  "INPUT": 0,
+  "SELECT": 1,
+  "DATE": 2,
+  "INPUT_NUMBER": 3,
+  "DATE_RANGE": 4
+}
