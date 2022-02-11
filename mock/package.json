@@ -1,0 +1,17 @@
+{
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "mock",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "fangqi",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

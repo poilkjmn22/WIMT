@@ -1,0 +1,2 @@
+限流  speed  选择  640kbps,320kbps,160kbps,80kbps,0kbps  是  
+时长  duration  选择  1小时,6小时,24小时  是  

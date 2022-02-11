@@ -1,0 +1,5 @@
+地面服务器地址  ground_service_ip  文本填写  188.12.123.12  是  符合IP规则
+乘客IP地址池  guest_ip_pool  文本填写  188.12.123.12至188.12.123.254  否  符合IP规则
+域名服务器地址  domain_service_ip  文本填写  188.12.123.12  是  符合IP规则
+租期至  rent_end_date  日期选择  2021-12-31  否  
+隧道网关IP  tunnel_gateway_ip  文本填写  188.12.123.12  否  符合IP规则

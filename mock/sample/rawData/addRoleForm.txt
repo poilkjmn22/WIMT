@@ -1,0 +1,4 @@
+角色名称  roleName  文本填写  CM-ATG  是  
+角色分类  roleType  选择  CM-ATG  是  汉字和字母
+角色描述  description  文本填写  CM-ATG  否  请输入正整数
+角色权限  roleAuth  文本填写  CM-ATG  是  仅支持字母/数字/下划线

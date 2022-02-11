@@ -1,0 +1,6 @@
+roleName  角色名
+roleType  角色分类
+description  角色描述
+resources  角色权限
+creator  创建人
+createTime  创建时间

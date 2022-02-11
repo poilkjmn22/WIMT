@@ -1,0 +1,19 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "tools-cli": "bin/cli.js"
+  },
+  "author": "fangqi",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^8.1.0",
+    "iconv-lite": "^0.6.3",
+    "prettier": "^2.3.2"
+  }
+}

@@ -1,0 +1,13 @@
+SSID名称  SSID_name  文本填写  CM-ATG  是  16位以下英文数字及-_
+SSID隐藏  SSID_hidden  选择  是,否  是  /
+认证方式  auth_way  选择  Web认证  是  
+频段设置  frequency_band  选择  20Mhz,40Mhz,20/40Mhz  是  
+VLAN ID  VLAN_ID  文本填写    是  1 到 4094整数
+安全策略  security_policy  选择  WEP,WEP2  是  
+无线模式  offline_mode  选择  11b only,11g only,11n only,11bg mixed,11bgn mixed  是  
+上行速率  upload_speed  文本填写  500Mbps  否  
+下行速率  download_speed  文本填写  500Mbps  否  
+智能限速  limit_speed  选择  关,开  是  
+传输功率  transmission_power  选择  高,中,低  是  
+信号门限  signal_limit  选择  -90dMb,-80dMb,-70dMb,-60dMb,-50dMb,-40dMb  是  -90~-40dMb，整数
+防火墙设置  firewall  选择  关,开  是  

@@ -1,0 +1,3 @@
+groupName
+groupAbbreviation
+companyNo  int

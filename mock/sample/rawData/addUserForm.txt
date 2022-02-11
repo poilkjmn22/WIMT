@@ -1,0 +1,10 @@
+账号名称  userName  文本填写  CM-ATG  是  仅支持输入字母、数字、下划线，需以字母开头  
+姓名  realName  文本填写  CM-ATG  是  仅支持输入汉字、字母、'.'、'·'，需以汉字或字母开头
+手机号  phone  文本填写  CM-ATG  否  请输入正确手机号
+电子邮箱  email  文本填写  CM-ATG  是  请输入正确电子邮箱
+账号角色  userType  选择  CM-ATG  是  
+集团账号  groupFlag  单选  CM-ATG  是  
+所属航司  airlineId  选择  CM-ATG  是  
+所属集团  groupId  选择  CM-ATG  是  
+数据权限  auth  文本填写  CM-ATG  是  
+登录密码  password  文本填写  CM-ATG  是  密码长度8-16位，需为数字、字母及特殊字符的组合

@@ -1,0 +1,16 @@
+MSISDN  MSISDN  卡的MSISDN信息，与cmiot同步  数字  建议11-16字符，以cmiot为准
+ICCID  ICCID  卡的ICCID信息，与cmiot同步  数字+字符  建议20字符，以cmiot为准
+IMSI  IMSI  卡的IMSI信息，与cmiot同步  数字  建议15字符，以cmiot为准
+所属航司  flightCompany  SIM卡所属企业名称，与cmiot同步  文本  即CMIOT的企业
+飞机号  regisNo  与该SIM卡绑定的飞机号  文本  SIM卡与飞机绑定的功能二期实现。
+已用流量  usedFlow  该SIM已使用的流量总数  数字+单位  单位GB
+最大带宽  maxBandwidth  该SIM能够提供的最大下行带宽  数字+单位  单位Mbps
+是否已入群  isJoinedGroup  卡是否已经归属某群组  文本  分为‘是’‘否’
+用户标识  userSignal  该卡在CMIOT中的用户标识，即subsID，与cmiot同步  数字  
+归属账户  AccID  即所属AccID，与cmiot同步  数字  
+卡状态  status  指cmiot上定义的标准sim卡生命周期状态  文本  分为‘待激活’‘有效’‘停机’‘可测试’‘库存’‘预销户’‘已销户
+主商品  mainGoods  该卡订购的主商品    
+实名状态  realnameStatus  卡的实名认证状态  文本  分为‘未实名’‘已实名’‘未知’目前cmiot无相应状态详情
+生效时间  takeEffectDateTime  卡的生效时间，与cmiot同步  时间  年/月/日/时/分/秒
+失效时间  loseEffectDateTime  卡的失效时间，与cmiot同步  时间  年/月/日/时/分/秒
+创建时间  createDateTime  指卡首次进入本系统的时间  时间  年/月/日/时/分/秒

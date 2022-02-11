@@ -1,0 +1,5 @@
+PCC编码   code
+PCC名称  name
+状态  status
+类型  type
+状态变更  statusChangeDateTime

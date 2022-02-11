@@ -1,0 +1,32 @@
+[
+    {
+        "deviceMac":"9C:BC:F0:C7:4A:85",
+        "limit":"0",
+        "take_effect_time":"20:42",
+        "duration":"24时0分",
+        "flightNo":"MU5419",
+        "seatNo":"15J",
+        "IDSuffix":"208945",
+        "effectStatus":"生效"
+    },
+    {
+        "deviceMac":"9C:BC:F0:C7:4A:27",
+        "limit":"320KB/s",
+        "take_effect_time":"20:12",
+        "duration":"6时0分",
+        "flightNo":"MU5419",
+        "seatNo":"28C",
+        "IDSuffix":"033392",
+        "effectStatus":"失效"
+    },
+    {
+        "deviceMac":"9C:BC:F0:C7:4A:21",
+        "limit":"80KB/s",
+        "take_effect_time":"20:08",
+        "duration":"1时0分",
+        "flightNo":"MU5419",
+        "seatNo":"35E",
+        "IDSuffix":"037302",
+        "effectStatus":"失效"
+    }
+]

@@ -1,0 +1,8 @@
+设备mac   deviceMac
+限流  limit
+生效时间  take_effect_time
+时长  duration
+航班号  flightNo
+座位号  seatNo
+身份证后六位  IDSuffix
+生效状态  effectStatus

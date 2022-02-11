@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "系统管理",
+    "route": "SYS_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": null,
+    "order": 1
+  },
+  {
+    "id": 2,
+    "name": "资源管理",
+    "route": "R_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 1,
+    "order": 2
+  },
+  {
+    "id": 3,
+    "name": "新增菜单",
+    "route": "MENU_A",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 3
+  },
+  {
+    "id": 4,
+    "name": "编辑菜单",
+    "route": "MENU_E",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 4
+  },
+  {
+    "id": 5,
+    "name": "删除菜单",
+    "route": "MENU_D",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 5
+  },
+  {
+    "id": 6,
+    "name": "编辑资源",
+    "route": "R_EDIT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 6
+  },
+  {
+    "id": 7,
+    "name": "查看",
+    "route": "VIEW",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 7
+  },
+  {
+    "id": 8,
+    "name": "角色管理",
+    "route": "ROLE_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 1,
+    "order": 8
+  },
+  {
+    "id": 9,
+    "name": "角色管理",
+    "route": "ROLE_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 8,
+    "order": 9
+  },
+  {
+    "id": 10,
+    "name": "新增角色",
+    "route": "ROLE_ADD",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 10
+  },
+  {
+    "id": 11,
+    "name": "编辑角色",
+    "route": "ROLE_EDIT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 11
+  },
+  {
+    "id": 12,
+    "name": "删除角色",
+    "route": "ROLE_DEL",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 12
+  }
+]

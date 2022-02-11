@@ -1,0 +1,4 @@
+父菜单  parent_id  文本填写  CM-ATG  是  
+菜单名  name  文本填写  CM-ATG  是  汉字和字母
+排序  order  文本填写  CM-ATG  是  请输入正整数
+菜单路由  route  文本填写  CM-ATG  是  仅支持字母/数字/下划线

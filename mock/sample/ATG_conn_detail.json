@@ -1,0 +1,77 @@
+{
+  "MSISDN":"100000MSISDN0001",
+  "ICCID":"3088ICCID0000001001",
+  "IMSI":"2200IMSI00001",
+  "userID":"1011000089271008",
+  "status":"可测试",
+  "nextStatus":"有效",
+  "CTCreateDateTime":"2020.10.20 09:00:00",
+  "CTActiveDateTime":"2020.11.20 09:30:00",
+  "testLoseEffectDateTime":"2021.11.20 09:00:00",
+  "isJoinedGroup":1,
+  "belongingComp":"东方航空",
+  "enterpriseID":"1000599992400501992",
+  "accountName":"第一账户",
+  "belongingAccount":"1011000003537008",
+  "groupList": [
+    {
+      "groupName":"上研-飞联网APN1通用融合流量池",
+      "groupID":"611000008440342"
+    },
+    {
+      "groupName":"飞联网APN2applemusic专用流量池",
+      "groupID":"611000008440032"
+    }
+  ],
+  "mainGoodsID":"11000001",
+  "mainGoods":"物联网对公",
+  "takeEffectDateTime":"2020.11.20 09:00:00",
+  "loseEffectDateTime":"2099.11.20 09:00:00",
+  "properties": [
+    {
+      "label": "计费模式",
+      "content": "APN计费"
+    },
+    {
+      "label": "属性2",
+      "content": "PCC"
+    }
+  ],
+  "realnameStatus":"已实名",
+  "realnameDateTime":"2020.12.26 09:00:00",
+  "credentialName":"韩**",
+  "credentialType":"身份证",
+  "credentialNo":"367859688******7838",
+  "contractWay":"187****7180",
+  "realnameScene":"主动实名",
+
+  "APNInfoList": [
+    {
+      "name":"CMIOTAPN001",
+      "status":"已激活",
+      "statusChange":"2020.11.23 09:30:00",
+      "PCCInfoList": [
+        {
+          "code":"22431000100000000000000000000007",
+          "name":"东方航空B2C-Music",
+          "status":"已激活",
+          "type":"业务策略",
+          "statusChangeDateTime":"2020.12.28 11:00:00"
+        }
+      ]
+    },
+    {
+      "name":"CMIOTAPN002",
+      "status":"未激活",
+      "statusChange":"2020.09.13 11:30:00",
+      "PCCInfoList": []
+    }
+  ],
+  "serviceList": [
+    {
+      "type": "数据通信服务",
+      "name":"基础通信服务1",
+      "goodsInstance":"611002300244004"
+    }
+  ]
+}

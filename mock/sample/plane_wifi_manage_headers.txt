@@ -1,0 +1,13 @@
+连接ID  connID
+设备mac  deviceMac
+用户ID  userID
+航班号  regisNo
+座位号  seatNo
+身份证后六位  IDSuffix
+用户类型  userType
+占用带宽  bandwidth
+在线状态  onlineStatus
+设备上线时间  deviceOnlineDateTime
+设备下线时间  deviceOfflineDateTime
+使用流量  usageFlow
+连接时长  connDuration

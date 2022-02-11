@@ -1,0 +1,47 @@
+MSISDN  MSISDN
+ICCID  ICCID
+IMSI  IMSI
+用户标识  userID  该卡在CMIOT中的用户标识
+卡状态  status  分为‘待激活’‘有效’‘停机’‘可测试’‘库存’‘预销户’‘已销户’7种
+下一状态  nextStatus  分为‘待激活’‘有效’‘停机’‘可测试’‘库存’‘预销户’‘已销户’7种
+CT创建时间  CTCreateDateTime  SIM卡在cmiot的创建时间，从cmiot获取
+CT激活时间  CTActiveDateTime  SIM卡在cmiot的激活时间，从cmiot获取
+测试失效时间  testLoseEffectDateTime  卡状态（‘可测试’）失效时间，获取源为cmiot
+是否入群  isJoinedGroup  是否已加入某群组，分为“是”“否”两种状态
+
+所属企业  belongingComp  SIM卡所属企业	文本
+企业标识  enterpriseID  企业EC	数字
+账户名称  accountName  SIM卡所在企业账户名称	文本
+归属账户  belongingAccount  账户编码	数字
+
+群组名称  groupName  SIM卡所在群组
+群组ID  groupID  SIM卡所在群组ID
+
+主商品ID  mainGoodsID  关联查看商品信息，从CMIOT获取
+主商品  mainGoods  主商品的名称
+生效时间  takeEffectDateTime  该商品订购在CMIOT上的生效时间
+失效时间  loseEffectDateTime  该商品订购在CMIOT上的失效时间
+属性  property  该商品订购在CMIOT上的属性实例可以存在多个属性实例信息
+
+实名状态  realnameStatus  分为“已实名”“未实名”“未知”三种
+实名时间  realnameDateTime  SIM卡进行实名认证的时间
+证件名称  credentialName  证件持有人的姓名信息
+证件类型  credentialType  证件的类型
+证件号码  credentialNo  身份证号码
+联系方式  contractWay  证件持有人的联系电话号码
+实名场景  realnameScene  该用户进行实名认证的场景，分为‘主动实名’‘非148号段11位语音号码实名’两种
+
+APN名称  APNName  APN的名称信息，与CMIOT同步
+APN状态  APNStatus  APN的状态，分为‘未激活’‘激活’‘暂停’3种，与CMIOT同步
+状态变更  statusChange  APN的状态变更时间，与CMIOT同步
+PCC信息  PCCInfo  当前APN下的PCC信息
+
+PCC编码  PCCCode  该卡订购的PCC信息，与CMIOT同步
+PCC名称  PCCName  PCC名称，与CMIOT同步
+PCC状态  PCCStatus  PCC状态，分为‘已激活’‘暂停’
+PCC类型  PCCType  PCC类型，分为‘用户策略’‘业务策略’
+状态变更时间  statusChangeDateTime  PCC状态变更时间
+
+服务名称  serviceName  与CMIOT同步
+商品实例  GoodsInstance  商品实例ID，与CMIOT同步
+

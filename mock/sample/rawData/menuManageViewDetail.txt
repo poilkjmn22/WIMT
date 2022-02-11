@@ -1,0 +1,6 @@
+name  菜单名
+parent_name  父菜单
+route  菜单路由
+order  排序
+creator  创建人
+createTime  创建时间

@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "roleName": "超级管理员",
+    "roleDesc": "SYS_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": null,
+    "order": 1
+  },
+  {
+    "id": 2,
+    "roleName": "飞联网平台管理员",
+    "roleDesc": "ATG_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 1,
+    "order": 2
+  },
+  {
+    "id": 3,
+    "roleName": "运营角色",
+    "roleDesc": "运营角色",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 3
+  },
+  {
+    "id": 4,
+    "roleName": "编辑菜单",
+    "roleDesc": "MENU_E",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 4
+  },
+  {
+    "id": 5,
+    "roleName": "删除菜单",
+    "roleDesc": "MENU_D",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 5
+  },
+  {
+    "id": 6,
+    "roleName": "编辑资源",
+    "roleDesc": "R_EDIT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 6
+  },
+  {
+    "id": 7,
+    "roleName": "查看",
+    "roleDesc": "VIEW",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 2,
+    "order": 7
+  },
+  {
+    "id": 8,
+    "roleName": "角色管理",
+    "roleDesc": "ROLE_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 1,
+    "order": 8
+  },
+  {
+    "id": 9,
+    "roleName": "角色管理",
+    "roleDesc": "ROLE_MGMT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 8,
+    "order": 9
+  },
+  {
+    "id": 10,
+    "roleName": "新增角色",
+    "roleDesc": "ROLE_ADD",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 10
+  },
+  {
+    "id": 11,
+    "roleName": "编辑角色",
+    "roleDesc": "ROLE_EDIT",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 11
+  },
+  {
+    "id": 12,
+    "roleName": "删除角色",
+    "roleDesc": "ROLE_DEL",
+    "createTime": "2022-01-11 11:15:06",
+    "parentId": 9,
+    "order": 12
+  }
+]
